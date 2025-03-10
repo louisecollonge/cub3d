@@ -6,12 +6,12 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:15:42 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/10 14:19:44 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/10 15:16:10 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
 /* 
-Gestion des entrees, key_hook
+Gestion des entrees : fleches, echap, WASD : key_hook
 */

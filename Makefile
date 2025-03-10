@@ -6,7 +6,7 @@
 #    By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/10 12:17:39 by lcollong          #+#    #+#              #
-#    Updated: 2025/03/10 14:16:51 by lcollong         ###   ########.fr        #
+#    Updated: 2025/03/10 14:24:18 by lcollong         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ MLX_BUILD_DIR = $(MLX_DIR)/build
 MLX = $(MLX_BUILD_DIR)/libmlx42.a
 
 SRC = 	$(SRC_DIR)/main.c \
+		$(SRC_DIR)/parse.c \
 		$(SRC_DIR)/init.c \
 		$(SRC_DIR)/render.c \
 		$(SRC_DIR)/textures.c \
