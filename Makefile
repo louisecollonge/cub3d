@@ -6,7 +6,7 @@
 #    By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/10 12:17:39 by lcollong          #+#    #+#              #
-#    Updated: 2025/03/10 13:21:27 by lcollong         ###   ########.fr        #
+#    Updated: 2025/03/10 14:16:51 by lcollong         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,12 @@ MLX_DIR = MLX42
 MLX_BUILD_DIR = $(MLX_DIR)/build
 MLX = $(MLX_BUILD_DIR)/libmlx42.a
 
-SRC = $(SRC_DIR)/main.c \
+SRC = 	$(SRC_DIR)/main.c \
+		$(SRC_DIR)/init.c \
+		$(SRC_DIR)/render.c \
+		$(SRC_DIR)/textures.c \
+		$(SRC_DIR)/input.c \
+		$(SRC_DIR)/utils.c
 
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
