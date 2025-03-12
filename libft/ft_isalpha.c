@@ -1,38 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/10 12:23:01 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/12 16:40:25 by lcollong         ###   ########.fr       */
+/*   Created: 2024/10/14 14:05:04 by lcollong          #+#    #+#             */
+/*   Updated: 2024/10/23 15:03:56 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+int	ft_isalpha(int c)
 {
-	t_game	game;
-
-	parse_args(ac, av);
-	parse_file(av[1], &game);
-	// init_game(&game);
-	// mlx_loop(game.mlx);
-	
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+		return (1);
 	return (0);
 }
 
-/* 
-Fonctions autorisees :
+/* int main()
+{
+	int u;
 
-open, close, read
-write
-printf
-perror, strerror
-exit
-toutes les fns de la lib math
-toutes les fns de la MLX
-
-*/
+	u = 'k';
+	printf ("The char is '%c' : it ", u);
+	if (ft_isalpha(u))
+		printf ("is alphabetic.\n");
+	else
+		printf ("is not alphabetic.\n");
+	return (0);
+} */

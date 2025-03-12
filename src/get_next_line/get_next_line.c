@@ -6,11 +6,11 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 11:56:43 by lcollong          #+#    #+#             */
-/*   Updated: 2024/11/04 21:47:27 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/12 13:52:24 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../../cub3D.h"
 
 char	*get_next_line(int fd)
 {
@@ -128,29 +128,29 @@ char	*remain(char *str)
 	return (remain);
 }
 
-int	main(int argc, char **argv)
-{
-	int		i;
-	int		fd;
-	char	*next_line;
-	(void)argc;
+// int	main(int argc, char **argv)
+// {
+// 	int		i;
+// 	int		fd;
+// 	char	*next_line;
+// 	(void)argc;
 	
-	i = 0;
-	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
-	{
-		printf ("File error");
-		return (1);
-	}
-	while (fd >= 0)
-	{
-		next_line = get_next_line(fd);
-		if (next_line == NULL)
-			break ;
-		printf("[%d] %s", i, next_line);
-		i++;
-		free (next_line);
-	}
-	close(fd);
-	return (0);
-}
+// 	i = 0;
+// 	fd = open(argv[1], O_RDONLY);
+// 	if (fd == -1)
+// 	{
+// 		printf ("File error");
+// 		return (1);
+// 	}
+// 	while (fd >= 0)
+// 	{
+// 		next_line = get_next_line(fd);
+// 		if (next_line == NULL)
+// 			break ;
+// 		printf("[%d] %s", i, next_line);
+// 		i++;
+// 		free (next_line);
+// 	}
+// 	close(fd);
+// 	return (0);
+// }

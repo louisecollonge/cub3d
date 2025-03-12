@@ -1,38 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/10 12:23:01 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/12 16:40:25 by lcollong         ###   ########.fr       */
+/*   Created: 2024/10/21 18:19:05 by lcollong          #+#    #+#             */
+/*   Updated: 2024/10/25 19:44:07 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+t_list	*ft_lstnew(void *content)
 {
-	t_game	game;
+	t_list	*list;
 
-	parse_args(ac, av);
-	parse_file(av[1], &game);
-	// init_game(&game);
-	// mlx_loop(game.mlx);
-	
-	return (0);
+	list = malloc(sizeof(struct s_list));
+	if (list == NULL)
+		return (NULL);
+	list->content = content;
+	list->next = NULL;
+	return (list);
 }
 
-/* 
-Fonctions autorisees :
-
-open, close, read
-write
-printf
-perror, strerror
-exit
-toutes les fns de la lib math
-toutes les fns de la MLX
-
-*/
+/* int	main(void)
+{
+	char	*content = "Hello";
+	t_list	*list = ft_lstnew(content);
+	printf("content = %s\n", (char *)list->content);
+	free(list);
+	return (0);
+} */

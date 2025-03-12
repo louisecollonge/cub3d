@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/10 12:23:01 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/12 16:40:25 by lcollong         ###   ########.fr       */
+/*   Created: 2024/10/20 17:31:32 by lcollong          #+#    #+#             */
+/*   Updated: 2024/10/24 10:36:15 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+void	ft_putchar_fd(char c, int fd)
 {
-	t_game	game;
-
-	parse_args(ac, av);
-	parse_file(av[1], &game);
-	// init_game(&game);
-	// mlx_loop(game.mlx);
-	
-	return (0);
+	write(fd, &c, 1);
 }
 
-/* 
-Fonctions autorisees :
+/* int	main(void)
+{
+	int		fd;
+	char	c;
 
-open, close, read
-write
-printf
-perror, strerror
-exit
-toutes les fns de la lib math
-toutes les fns de la MLX
-
-*/
+	fd = 1;
+	c = 'A';
+	ft_putchar_fd(c, fd);
+	return (0);
+} */

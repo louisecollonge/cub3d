@@ -1,38 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/10 12:23:01 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/12 16:40:25 by lcollong         ###   ########.fr       */
+/*   Created: 2024/10/15 10:09:18 by lcollong          #+#    #+#             */
+/*   Updated: 2024/10/24 10:53:46 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+size_t	ft_strlen(const char *s)
 {
-	t_game	game;
+	size_t	i;
 
-	parse_args(ac, av);
-	parse_file(av[1], &game);
-	// init_game(&game);
-	// mlx_loop(game.mlx);
-	
-	return (0);
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }
 
-/* 
-Fonctions autorisees :
-
-open, close, read
-write
-printf
-perror, strerror
-exit
-toutes les fns de la lib math
-toutes les fns de la MLX
-
-*/
+/* int	main(void)
+{
+	const char str[1000] = "Hello world !";
+	printf("The strings \"%s\" contains %zu characters.\n", str, ft_strlen(str));
+	return (0);
+} */

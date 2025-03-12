@@ -1,38 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/10 12:23:01 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/12 16:40:25 by lcollong         ###   ########.fr       */
+/*   Created: 2024/10/21 15:16:23 by lcollong          #+#    #+#             */
+/*   Updated: 2024/10/24 18:34:07 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	t_game	game;
+	int		i;
 
-	parse_args(ac, av);
-	parse_file(av[1], &game);
-	// init_game(&game);
-	// mlx_loop(game.mlx);
-	
-	return (0);
+	i = 0;
+	while (s[i])
+	{
+		f(i, &s[i]);
+		i++;
+	}
 }
 
-/* 
-Fonctions autorisees :
+/* void	ft_test(unsigned int i, char *ptr_s)
+{
+	i = 0;
+	*ptr_s = 'a';
+}
 
-open, close, read
-write
-printf
-perror, strerror
-exit
-toutes les fns de la lib math
-toutes les fns de la MLX
-
-*/
+int	main(void)
+{
+	char	str[100] = "Hello";
+	printf ("\"%s\" becomes ", str);
+	ft_striteri(str, ft_test);
+	printf ("\"%s\"\n", str);
+	return (0);
+} */

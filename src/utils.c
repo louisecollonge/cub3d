@@ -6,9 +6,14 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:15:51 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/10 15:16:29 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/12 17:38:11 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
+void	error(char *s)
+{
+	printf("%s\n", s);
+	exit(EXIT_FAILURE);
+}
