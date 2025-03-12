@@ -6,7 +6,7 @@
 #    By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/10 12:17:39 by lcollong          #+#    #+#              #
-#    Updated: 2025/03/12 16:34:57 by lcollong         ###   ########.fr        #
+#    Updated: 2025/03/12 17:54:50 by lcollong         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ SRC = 	$(SRC_DIR)/main.c \
 		$(SRC_DIR)/$(GNL_DIR)/get_next_line_utils.c \
 		$(SRC_DIR)/$(PARSING_DIR)/parse.c \
 		$(SRC_DIR)/$(PARSING_DIR)/parse_textures.c \
-		$(SRC_DIR)/$(PARSING_DIR)/parse_F_C.c \
+		$(SRC_DIR)/$(PARSING_DIR)/parse_color.c \
 		$(SRC_DIR)/$(PARSING_DIR)/parse_map.c \
 		$(SRC_DIR)/init.c \
 		$(SRC_DIR)/render.c \

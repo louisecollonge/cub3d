@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:23:19 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/12 17:43:43 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/12 18:21:16 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef struct s_tex
 {
 	char	*floor;
 	char	*ceiling;
+	int		floor_rgb;
+	int		ceiling_rgb;
 	// north, south, west, east
 }	t_tex;
 

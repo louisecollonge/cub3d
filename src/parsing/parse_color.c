@@ -1,16 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_F_C.c                                        :+:      :+:    :+:   */
+/*   parse_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:11:55 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/12 17:43:30 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/12 18:52:45 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D.h"
+
+static int	get_rgb(t_tex *textures, char *option, t_color OPT)
+{
+	int		i;
+	int		r;
+	int		g;
+	int		b;
+	(void)OPT;
+	(void)textures;
+	
+	i = 0;
+	r = ft_atoi(option);
+	while (option[i] && option[i] != ',')
+		i++;
+	g = ft_atoi(&option[i + 1]);
+	while (option[i])
+		i++;
+	b = ft_atoi(&option[i + 1]);
+	if (r > 255 || g > 255 || b > 255 || r < 0 || g < 0 || b < 0)
+		error("Wrong color");
+	
+	// // debug
+	// printf("%s : r : %d, g : %d, b : %d\n", option, r, g, b);
+	return ((r << 16) | (g << 8) | b);
+}
 
 static void	parse_color_helper(t_tex *textures, char *line, int *i, t_color color)
 {
@@ -22,7 +47,11 @@ static void	parse_color_helper(t_tex *textures, char *line, int *i, t_color colo
 		while (line[*i])
 			(*i)++;
 		textures->ceiling = ft_substr(line, start, *i - 1);
-		printf("Ceiling color : %s\n", textures->ceiling); //debug
+		if (!textures->ceiling)
+			error("Malloc error");
+		
+		textures->ceiling_rgb = get_rgb(textures, textures->ceiling, CEILING);
+		printf("Ceiling color : %s. RGB = %d\n", textures->ceiling, textures->ceiling_rgb); //debug
 	}
 	else if (color == FLOOR)
 	{
@@ -30,7 +59,11 @@ static void	parse_color_helper(t_tex *textures, char *line, int *i, t_color colo
 		while (line[*i])
 			(*i)++;
 		textures->floor = ft_substr(line, start, *i - 1);
-		printf("Floor color : %s\n", textures->floor); //debug
+		if (!textures->floor)
+			error("Malloc error");
+		
+		textures->floor_rgb = get_rgb(textures, textures->floor, FLOOR);
+		printf("Floor color : %s. RGB = %d\n", textures->floor, textures->floor_rgb); //debug
 	}
 }
 

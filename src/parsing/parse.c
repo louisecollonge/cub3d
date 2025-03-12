@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:24:20 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/12 16:41:22 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/12 17:51:46 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,22 +39,27 @@ void	parse_args(int ac, char **av)
 
 static void	process_line(char *line, int fd)
 {
-	if (ft_strncmp(line, "\n", 2) == 0)
+	int	i;
+
+	i = 0;
+	while (line[i] == ' ' || line[i] == '\t')
+		i++;
+	if (ft_strncmp(line + i, "\n", 2) == 0)
 		return ;
-	else if (ft_strncmp(line, "NO ", 3) == 0)
-		parse_north_texture(line + 3);
-	else if (ft_strncmp(line, "SO ", 3) == 0)
-		parse_south_texture(line + 3);
-	else if (ft_strncmp(line, "WE ", 3) == 0)
-		parse_west_texture(line + 3);
-	else if (ft_strncmp(line, "EA ", 3) == 0)
-		parse_east_texture(line + 3);
-	else if (ft_strncmp(line, "F ", 2) == 0)
-		parse_color(line + 2, fd, FLOOR);
-	else if (ft_strncmp(line, "C ", 2) == 0)
-		parse_color(line + 2, fd, CEILING);
+	else if (ft_strncmp(line + i, "NO ", 3) == 0)
+		parse_north_texture(line + i + 3);
+	else if (ft_strncmp(line + i, "SO ", 3) == 0)
+		parse_south_texture(line + i + 3);
+	else if (ft_strncmp(line + i, "WE ", 3) == 0)
+		parse_west_texture(line + i + 3);
+	else if (ft_strncmp(line + i, "EA ", 3) == 0)
+		parse_east_texture(line + i + 3);
+	else if (ft_strncmp(line + i, "F ", 2) == 0)
+		parse_color(line + i + 2, fd, FLOOR);
+	else if (ft_strncmp(line + i, "C ", 2) == 0)
+		parse_color(line + i + 2, fd, CEILING);
 	else
-		parse_map(line);
+		parse_map(line + i);
 }
 
 void	parse_file(char *file, t_game *game)
