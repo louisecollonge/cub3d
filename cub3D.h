@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:23:19 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/13 10:06:25 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/13 10:49:37 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_tex
 	mlx_texture_t	*so;
 	mlx_texture_t	*we;
 	mlx_texture_t	*ea;
+	int				fd_map;
 	// north, south, west, east
 }	t_tex;
 
@@ -77,8 +78,8 @@ typedef struct s_game
 void	parse_args(int ac, char **av);
 void	parse_file(char *file);
 void	parse_texture(char *line, t_tex *textures, t_option option);
-void	parse_color(char *line, int file_fd, t_tex *textures, t_option);
-void	parse_map(char *line);
+void	parse_color(char *line, t_tex *textures, t_option);
+void	parse_map(char *line, t_tex *textures);
 
 // Init
 void	init_game();
@@ -90,7 +91,7 @@ void	init_game();
 // Textures
 
 // Utils
-void	error(char *s);
+void	error(char *s, int fd);
 
 // Get Next Line
 char	*ft_strncpy(char *dest, char *src, unsigned int n);
