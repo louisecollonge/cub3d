@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:23:19 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/13 10:49:37 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/13 13:09:39 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef enum	s_option
 	EA,
 } t_option;
 
-typedef struct s_tex
+typedef struct s_data
 {
 	char			*floor;
 	char			*ceiling;
@@ -55,8 +55,9 @@ typedef struct s_tex
 	mlx_texture_t	*we;
 	mlx_texture_t	*ea;
 	int				fd_map;
-	// north, south, west, east
-}	t_tex;
+	int				character_nb;
+	char			*map_string;
+}	t_data;
 
 typedef struct s_player
 {
@@ -77,9 +78,9 @@ typedef struct s_game
 // Parsing
 void	parse_args(int ac, char **av);
 void	parse_file(char *file);
-void	parse_texture(char *line, t_tex *textures, t_option option);
-void	parse_color(char *line, t_tex *textures, t_option);
-void	parse_map(char *line, t_tex *textures);
+void	parse_texture(char *line, t_data *data, t_option option);
+void	parse_color(char *line, t_data *data, t_option);
+void	parse_map(char *line, t_data *data);
 
 // Init
 void	init_game();

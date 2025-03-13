@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:24:20 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/13 10:55:11 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/13 17:36:01 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@ void	parse_args(int ac, char **av)
 	int	extension_len;
 
 	if (ac != 2)
-		error("Argument error, retry with: ./cub3D map.cub", -1);
+		error("Wrong argument: retry with: ./cub3D map.cub", -1);
 	file_len = ft_strlen(av[1]); //map file path name
 	extension_len = 4; //.cub
 	if (file_len - extension_len <= 0
 		|| ft_strncmp(av[1] + (file_len - extension_len), ".cub", 5))
-		error("Wrong extension", -1);
+		error("Wrong extension: must be .cub", -1);
 }
 
-static void	process_line(char *line, t_tex *textures)
+static void	process_line(char *line, t_data *data)
 {
 	int	i;
 	int	len;
@@ -43,34 +43,53 @@ static void	process_line(char *line, t_tex *textures)
 	{
 		len = ft_strlen(line);
 		line[len - 1] = '\0';
-		// parse_texture(line + i + 3, textures, NO);
+		parse_texture(line + i + 3, data, NO);
 	}
 	else if (ft_strncmp(line + i, "F ", 2) == 0)
-		parse_color(line + i + 2, textures, FLOOR);
+		parse_color(line + i + 2, data, FLOOR);
 	else if (ft_strncmp(line + i, "C ", 2) == 0)
-		parse_color(line + i + 2, textures, CEILING);
+		parse_color(line + i + 2, data, CEILING);
 	else
-		parse_map(line + i, textures);
+		parse_map(line + i, data);
+}
+
+static void	map_check(t_data *data)
+{
+	if (data->character_nb != 1)
+		error("No character in map", data->fd_map);
+	if (!data->no || !data->so || !data->we || !data->ea)
+		error("Missing texture", data->fd_map);
+	if (data->ceiling_rgb == -1 || data->floor_rgb == -1)
+		error("Missing color", data->fd_map);
+	if (!data->map_string)
+		error("No map", data->fd_map);
 }
 
 void	parse_file(char *map)
 {
 	char	*line;
-	t_tex	*textures;
+	t_data	*data;
 
-	textures = malloc(sizeof(t_tex));
-	if (!textures)
-		error("Malloc error", -1);
-	textures->fd_map = open(map, O_RDONLY);
-	if (textures->fd_map < 0)
-		error("Map file error", -1);
-	while (textures->fd_map >= 0)
+	data = malloc(sizeof(t_data));
+	if (!data)
+		error("Malloc failure", -1);
+	data->character_nb = 0;
+	data->map_string = NULL;
+	data->ceiling = NULL;
+	data->floor = NULL;
+	data->ceiling_rgb = -1;
+	data->floor_rgb = -1;
+	data->fd_map = open(map, O_RDONLY);
+	if (data->fd_map < 0)
+		error("Map file opening failure", -1);
+	while (data->fd_map >= 0)
 	{
-		line = get_next_line(textures->fd_map);
+		line = get_next_line(data->fd_map);
 		if (!line)
 			break ;
-		process_line(line, textures);
+		process_line(line, data);
 		free(line);
 	}
-	close(textures->fd_map);
+	map_check(data);
+	close(data->fd_map);
 }
