@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:10:30 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/13 13:28:28 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/13 17:57:57 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	parse_texture(char *line, t_data *data, t_option option)
 	printf(GREEN "%s\n" RESET, line); //debug
 	(void)data;
 	(void)option;
+	(void)line;
 	// if (option == NO)
 	// {
 	// 	data->no = mlx_load_png(line);

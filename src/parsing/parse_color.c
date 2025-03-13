@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:11:55 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/13 17:34:58 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/13 17:58:01 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ static char	*parse_color_helper(t_data *data, char *line, t_option option)
 		data->ceiling = ft_substr(line, start, i - 1);
 		if (!data->ceiling)
 			return ("Malloc failure");
-		// printf("ceiling: <%s>\n", data->ceiling); //debug
 		data->ceiling_rgb = get_rgb(data->ceiling, data->fd_map);
 		printf(YELLOW "Ceiling color : %s. RGB = %#08x.\n" RESET, data->ceiling, data->ceiling_rgb); //debug
 	}
@@ -59,7 +58,6 @@ static char	*parse_color_helper(t_data *data, char *line, t_option option)
 		data->floor = ft_substr(line, start, i - 1);
 		if (!data->floor)
 			return ("Malloc failure");
-		// printf("floor: <%s>\n", data->floor); //debug
 		data->floor_rgb = get_rgb(data->floor, data->fd_map);
 		printf(YELLOW "Floor color : %s. RGB = %#08x.\n" RESET, data->floor, data->floor_rgb); //debug
 	}

@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:24:20 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/13 17:36:01 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/13 17:57:32 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,11 @@ static void	process_line(char *line, t_data *data)
 
 static void	map_check(t_data *data)
 {
+	printf("%s\n", data->map_string); //debug
 	if (data->character_nb != 1)
 		error("No character in map", data->fd_map);
-	if (!data->no || !data->so || !data->we || !data->ea)
-		error("Missing texture", data->fd_map);
+	// if (!data->no || !data->so || !data->we || !data->ea)
+	// 	error("Missing texture", data->fd_map);
 	if (data->ceiling_rgb == -1 || data->floor_rgb == -1)
 		error("Missing color", data->fd_map);
 	if (!data->map_string)
