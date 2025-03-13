@@ -6,20 +6,18 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:11:55 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/12 18:52:45 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/13 10:16:02 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D.h"
 
-static int	get_rgb(t_tex *textures, char *option, t_color OPT)
+static int	get_rgb(char *option)
 {
 	int		i;
 	int		r;
 	int		g;
 	int		b;
-	(void)OPT;
-	(void)textures;
 	
 	i = 0;
 	r = ft_atoi(option);
@@ -31,17 +29,14 @@ static int	get_rgb(t_tex *textures, char *option, t_color OPT)
 	b = ft_atoi(&option[i + 1]);
 	if (r > 255 || g > 255 || b > 255 || r < 0 || g < 0 || b < 0)
 		error("Wrong color");
-	
-	// // debug
-	// printf("%s : r : %d, g : %d, b : %d\n", option, r, g, b);
 	return ((r << 16) | (g << 8) | b);
 }
 
-static void	parse_color_helper(t_tex *textures, char *line, int *i, t_color color)
+static void	parse_color_helper(t_tex *textures, char *line, int *i, t_option option)
 {
 	int	start;
 
-	if (color == CEILING)
+	if (option == CEILING)
 	{
 		start = *i;
 		while (line[*i])
@@ -49,11 +44,10 @@ static void	parse_color_helper(t_tex *textures, char *line, int *i, t_color colo
 		textures->ceiling = ft_substr(line, start, *i - 1);
 		if (!textures->ceiling)
 			error("Malloc error");
-		
-		textures->ceiling_rgb = get_rgb(textures, textures->ceiling, CEILING);
-		printf("Ceiling color : %s. RGB = %d\n", textures->ceiling, textures->ceiling_rgb); //debug
+		textures->ceiling_rgb = get_rgb(textures->ceiling);
+		printf(YELLOW "Ceiling color : %s. RGB = %#08x.\n" RESET, textures->ceiling, textures->ceiling_rgb); //debug
 	}
-	else if (color == FLOOR)
+	else if (option == FLOOR)
 	{
 		start = *i;
 		while (line[*i])
@@ -61,30 +55,25 @@ static void	parse_color_helper(t_tex *textures, char *line, int *i, t_color colo
 		textures->floor = ft_substr(line, start, *i - 1);
 		if (!textures->floor)
 			error("Malloc error");
-		
-		textures->floor_rgb = get_rgb(textures, textures->floor, FLOOR);
-		printf("Floor color : %s. RGB = %d\n", textures->floor, textures->floor_rgb); //debug
+		textures->floor_rgb = get_rgb(textures->floor);
+		printf(YELLOW "Floor color : %s. RGB = %#08x.\n" RESET, textures->floor, textures->floor_rgb); //debug
 	}
 }
 
-static void	color_error(int file_fd, t_color color)
+static void	color_error(int fd_map, t_option option)
 {
-	if (color == FLOOR)
+	if (option == FLOOR)
 		printf(RED "Wrong floor color\n" RESET);
-	else if (color == CEILING)
+	else if (option == CEILING)
 		printf(RED "Wrong ceiling color\n" RESET);
-	close(file_fd);
+	close(fd_map);
 	exit(EXIT_FAILURE);
 }
 
-void	parse_color(char *line, int file_fd, t_color color)
+void	parse_color(char *line, int fd_map, t_tex *textures, t_option option)
 {
-	t_tex	*textures;
 	int		i;
 
-	textures = malloc(sizeof(t_tex));
-	if (!textures)
-		error("Malloc error");
 	i = 0;
 	while (line[i] && line[i] != '\n')
 	{
@@ -96,9 +85,9 @@ void	parse_color(char *line, int file_fd, t_color color)
 		else
 		{
 			if (!(ft_isdigit(line[i]) || line[i] == ','))
-				color_error(file_fd, color);
+				color_error(fd_map, option);
 			else
-				parse_color_helper(textures, line, &i, color);
+				parse_color_helper(textures, line, &i, option);
 		}
 		i++;
 	}

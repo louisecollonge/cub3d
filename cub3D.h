@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:23:19 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/12 18:21:16 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/13 10:06:25 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,25 +28,32 @@
 # define BOLDRED "\033[1;31m"
 # define BLUE "\033[34m"
 # define GREEN "\033[32m"
-# define BOLD "\033[1m"
 # define YELLOW "\033[38;2;255;165;0m"
 # define RED "\033[31m"
-# define RESET "\033[0m" 
+# define RESET "\033[0m"
 
 # define BUFFER_SIZE 1 //gnl
 
-typedef enum	s_color
+typedef enum	s_option
 {
 	FLOOR,
 	CEILING,
-} t_color;
+	NO,
+	SO,
+	WE,
+	EA,
+} t_option;
 
 typedef struct s_tex
 {
-	char	*floor;
-	char	*ceiling;
-	int		floor_rgb;
-	int		ceiling_rgb;
+	char			*floor;
+	char			*ceiling;
+	int				floor_rgb;
+	int				ceiling_rgb;
+	mlx_texture_t	*no;
+	mlx_texture_t	*so;
+	mlx_texture_t	*we;
+	mlx_texture_t	*ea;
 	// north, south, west, east
 }	t_tex;
 
@@ -68,12 +75,9 @@ typedef struct s_game
 
 // Parsing
 void	parse_args(int ac, char **av);
-void	parse_file(char *file, t_game *game);
-void	parse_north_texture(char *line);
-void	parse_south_texture(char *line);
-void	parse_west_texture(char *line);
-void	parse_east_texture(char *line);
-void	parse_color(char *line, int file_fd, t_color);
+void	parse_file(char *file);
+void	parse_texture(char *line, t_tex *textures, t_option option);
+void	parse_color(char *line, int file_fd, t_tex *textures, t_option);
 void	parse_map(char *line);
 
 // Init
