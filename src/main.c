@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:23:01 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/13 10:53:07 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/13 18:09:32 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int ac, char **av)
 
 	(void)game;
 	parse_args(ac, av);
-	parse_file(av[1]);
+	// parse_file(av[1]);
 	// init_game(&game);
 	// mlx_loop(game.mlx);
 	return (0);

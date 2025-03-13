@@ -6,13 +6,14 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:11:55 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/13 17:58:01 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/13 18:32:09 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D.h"
 
-static int	get_rgb(char *option, int fd_map)
+//todo A: transparence: necessaire ?
+static int	get_rgb(char *option, t_data *data)
 {
 	int		i;
 	int		r;
@@ -29,7 +30,7 @@ static int	get_rgb(char *option, int fd_map)
 		i++;
 	b = ft_atoi(&option[i + 1]);
 	if (r > 255 || g > 255 || b > 255 || r < 0 || g < 0 || b < 0)
-		error("Wrong color", fd_map);
+		error("Wrong color", data);
 	return ((r << 16) | (g << 8) | b);
 }
 
@@ -47,7 +48,7 @@ static char	*parse_color_helper(t_data *data, char *line, t_option option)
 		data->ceiling = ft_substr(line, start, i - 1);
 		if (!data->ceiling)
 			return ("Malloc failure");
-		data->ceiling_rgb = get_rgb(data->ceiling, data->fd_map);
+		data->ceiling_rgb = get_rgb(data->ceiling, data);
 		printf(YELLOW "Ceiling color : %s. RGB = %#08x.\n" RESET, data->ceiling, data->ceiling_rgb); //debug
 	}
 	else if (option == FLOOR)
@@ -58,7 +59,7 @@ static char	*parse_color_helper(t_data *data, char *line, t_option option)
 		data->floor = ft_substr(line, start, i - 1);
 		if (!data->floor)
 			return ("Malloc failure");
-		data->floor_rgb = get_rgb(data->floor, data->fd_map);
+		data->floor_rgb = get_rgb(data->floor, data);
 		printf(YELLOW "Floor color : %s. RGB = %#08x.\n" RESET, data->floor, data->floor_rgb); //debug
 	}
 	return (NULL);
@@ -88,5 +89,5 @@ void	parse_color(char *line, t_data *data, t_option option)
 	}
 	failure = parse_color_helper(data, line, option);
 	if (failure)
-		error(failure, data->fd_map);
+		error(failure, data);
 }

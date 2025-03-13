@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:23:19 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/13 13:09:39 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/13 19:10:05 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct s_data
 	int				fd_map;
 	int				character_nb;
 	char			*map_string;
+	char			**map_tab;
 }	t_data;
 
 typedef struct s_player
@@ -81,6 +82,8 @@ void	parse_file(char *file);
 void	parse_texture(char *line, t_data *data, t_option option);
 void	parse_color(char *line, t_data *data, t_option);
 void	parse_map(char *line, t_data *data);
+bool	wall_outline(t_data *data);
+bool	empty_space(t_data *data);
 
 // Init
 void	init_game();
@@ -92,7 +95,8 @@ void	init_game();
 // Textures
 
 // Utils
-void	error(char *s, int fd);
+void	error(char *s, t_data *data);
+int		tab_line_nb(char **tab);
 
 // Get Next Line
 char	*ft_strncpy(char *dest, char *src, unsigned int n);

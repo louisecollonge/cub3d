@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:10:30 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/13 17:57:57 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/13 19:51:29 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,33 @@
 
 void	parse_texture(char *line, t_data *data, t_option option)
 {
-	printf(GREEN "%s\n" RESET, line); //debug
 	(void)data;
 	(void)option;
 	(void)line;
+	printf(GREEN "%s\n" RESET, line); //debug
+
 	// if (option == NO)
 	// {
 	// 	data->no = mlx_load_png(line);
 	// 	if (!data->no)
-	// 		error("North texture loading failure", data->fd_map);
+	// 		error("North texture loading failure", data);
 	// }
 	// else if (option == SO)
 	// {
 	// 	data->so = mlx_load_png(line);
 	// 	if (!data->so)
-	// 		error("South texture loading failure", data->fd_map);
+	// 		error("South texture loading failure", data);
 	// }
 	// else if (option == WE)
 	// {
 	// 	data->we = mlx_load_png(line);
 	// 	if (!data->we)
-	// 		error("West texture loading failure", data->fd_map);
+	// 		error("West texture loading failure", data);
 	// }
 	// else if (option == EA)
 	// {
 	// 	data->ea = mlx_load_png(line);
 	// 	if (!data->ea)
-	// 		error("East texture loading failure", data->fd_map);
+	// 		error("East texture loading failure", data);
 	// }
 }
