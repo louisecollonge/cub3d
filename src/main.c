@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:23:01 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/13 18:09:32 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/14 18:44:48 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 int	main(int ac, char **av)
 {
 	t_game	game;
+	t_data	*data;
 
 	(void)game;
-	parse_args(ac, av);
-	// parse_file(av[1]);
+	data = parse_args(ac, av);
 	// init_game(&game);
 	// mlx_loop(game.mlx);
+	cleanup(data);
 	return (0);
 }
 
@@ -32,6 +33,7 @@ write
 printf
 perror, strerror
 exit
+
 toutes les fns de la lib math
 toutes les fns de la MLX
 

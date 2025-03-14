@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:23:19 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/13 19:10:05 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/14 18:50:59 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ typedef struct s_game
 }	t_game;
 
 // Parsing
-void	parse_args(int ac, char **av);
-void	parse_file(char *file);
+t_data	*parse_args(int ac, char **av);
+t_data	*parse_file(char *file);
 void	parse_texture(char *line, t_data *data, t_option option);
 void	parse_color(char *line, t_data *data, t_option);
 void	parse_map(char *line, t_data *data);
@@ -95,13 +95,15 @@ void	init_game();
 // Textures
 
 // Utils
-void	error(char *s, t_data *data);
+void	error(char *s, t_data *data, void *p1, void *p2);
+void	cleanup(t_data *data);
 int		tab_line_nb(char **tab);
+void	print_tab(char **tab); //debug
+
 
 // Get Next Line
 char	*ft_strncpy(char *dest, char *src, unsigned int n);
 char	*add_buff(char *big, char *small);
-// char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strchr(const char *s, int c);
 char	*read_file(char	*str, int fd);
 char	*ft_get_line(char *str);

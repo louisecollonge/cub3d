@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:15:51 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/13 19:09:40 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/14 18:50:45 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,16 @@ static void	free_tab(char **tab)
 	free(tab);
 }
 
-void	error(char *s, t_data *data)
+void	print_tab(char **tab) //debug
 {
-	printf(BOLDRED "Error\n" RESET);
-	printf(RED "%s\n" RESET, s);
+	int	i = 0;
+
+	while(tab[i])
+		printf("%s\n", tab[i++]);
+}
+
+void	cleanup(t_data *data)
+{
 	if (data->fd_map != -1)
 		close(data->fd_map);
 	if (data->map_string)
@@ -39,6 +45,17 @@ void	error(char *s, t_data *data)
 	//! faut-il free ou close les textures ?
 	if (data)
 		free(data);
+}
+
+void	error(char *s, t_data *data, void *p1, void *p2)
+{
+	printf(BOLDRED "Error\n" RESET);
+	printf(RED "%s\n" RESET, s);
+	cleanup(data);
+	if (p1)
+		free(p1);
+	if (p2)
+		free(p2);
 	exit(EXIT_FAILURE);
 }
 

@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:33:26 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/13 19:46:43 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/14 19:29:36 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,19 @@ static void	realloc_line(t_data *data, char *line)
 	if (!data->map_string)
 	{
 		data->map_string = ft_strdup(line);
+		if (!data->map_string)
+			error("Malloc failure", data, line, NULL);
 		return ;
 	}
 	else
 	{
-		tmp = malloc(ft_strlen(data->map_string) + ft_strlen(line) + 1);
-		if (!tmp)
-			error("Malloc failure", data);
 		tmp = ft_strjoin(data->map_string, line);
 		if (!tmp)
-			error("Malloc failure", data);
+			error("Malloc failure", data, line, NULL);
 		free(data->map_string);
 		data->map_string = ft_strdup(tmp);
 		if (!data->map_string)
-		{
-			free(tmp);
-			error("Malloc failure", data);
-		}
+			error("Malloc failure", data, line, tmp);
 		free(tmp);
 	}
 }
@@ -51,12 +47,12 @@ void	parse_map(char *line, t_data *data)
 		if (line[i] != ' ' && line[i] != '\t' && line[i] != '\n'
 			&& line[i] != '1' && line[i] != '0' && line[i] != 'N'
 			&& line[i] != 'S' && line[i] != 'W' && line[i] != 'E')
-			error("Wrong character in map", data);
+			error("Wrong character in map", data, NULL, NULL);
 		if (line[i] == 'N' || line[i] == 'S'
 			|| line[i] == 'W' || line[i] == 'E')
 			data->character_nb++;
 		if (data->character_nb > 1)
-			error("Too many characters in map", data);
+			error("Too many characters in map", data, NULL, NULL);
 		i++;
 	}
 	realloc_line(data, line);
