@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:24:20 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/17 15:34:33 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:50:17 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ static void	data_check(t_data *data)
 		error("No map", data, NULL, NULL);
 	if (data->character_nb != 1)
 		error("No character in map", data, NULL, NULL);
-	// if (wall_outline(data) == false)
-	// 	error("The outline of the map must be walls", data, NULL, NULL);
+	if (wall_outline(data) == false)
+		error("The outline of the map must be walls", data, NULL, NULL);
 }
 
 static t_data	*data_init(void)
