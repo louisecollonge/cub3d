@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 18:20:38 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/17 16:17:33 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/17 16:35:57 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 static bool	space(char **tab, int x, int y)
 {
-	if ((tab[x - 1][y] == ' ' || tab[x - 1][y] == '1')
-	&& (tab[x][y - 1] == ' ' || tab[x][y - 1] == '1')
-	&& (tab[x][y + 1] == ' ' || tab[x][y + 1] == '1')
-	&& (tab[x + 1][y] == ' ' || tab[x + 1][y] == '1'))
+	if ((tab[x - 1][y] == '\t' || tab[x - 1][y] == ' ' || tab[x - 1][y] == '1' || !tab[x - 1][y])
+	&& (tab[x][y - 1] == '\t' || tab[x][y - 1] == ' ' || tab[x][y - 1] == '1' || !tab[x][y - 1])
+	&& (tab[x][y + 1] == '\t' || tab[x][y + 1] == ' ' || tab[x][y + 1] == '1' || !tab[x][y + 1])
+	&& ((tab[x + 1][y] == '\t' || tab[x + 1][y] == ' ' || tab[x + 1][y] == '1' || !tab[x + 1][y])))
 		return (true);
+	printf("Wrong space at row = %d and col = %d\n", x, y); //debug
 	return (false);
 }
 
