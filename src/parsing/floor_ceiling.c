@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_color.c                                      :+:      :+:    :+:   */
+/*   floor_ceiling.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:11:55 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/14 18:54:55 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:08:55 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,13 @@ static void	color_error(int fd_map, char *line, t_option option)
 	exit(EXIT_FAILURE);
 }
 
-void	parse_color(char *line, t_data *data, t_option option)
+void	parse_color(char *line, t_data *data, t_option option, int *count)
 {
 	int		i;
 	char	*failure;
 
 	i = 0;
+	(*count)++;
 	while (line[i] && line[i] != '\n')
 	{
 		if (!(ft_isdigit(line[i]) || line[i] == ','))

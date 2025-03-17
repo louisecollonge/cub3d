@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:24:20 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/14 19:28:17 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:34:33 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,61 +27,48 @@ t_data	*parse_args(int ac, char **av)
 	return (parse_file(av[1]));
 }
 
-static bool	process_line(char *line, t_data *data, int count)
+static void	process_line(char *line, t_data *data, int *count)
 {
 	int	i;
-	int	len;
 
 	i = 0;
 	while (line[i] == ' ' || line[i] == '\t')
 		i++;
-	if (ft_strncmp(line + i, "\n", 2) == 0) 
+	if (ft_strncmp(line + i, "\n", 2) == 0)
 	{
-		if (count < 7)
-			return (false);
-		else
-			error("Empty line in map", data, line, NULL); //compteur qu'on incremente a chaque ligne non vide, jusqu'a la 7e qui est la 1ere ligne de la map: a partir de la, toute ligne vide est une erreur.
-	}	
-	else if (ft_strncmp(line + i, "NO ", 3) == 0
-		|| ft_strncmp(line + i, "SO ", 3) == 0
-		|| ft_strncmp(line + i, "WE ", 3) == 0
-		|| ft_strncmp(line + i, "EA ", 3) == 0)
-	{
-		len = ft_strlen(line);
-		line[len - 1] = '\0';
-		parse_texture(line + i + 3, data, NO);
-	} 
+		if (*count < 7)
+			return ;
+		else if (data->in_map == 1)
+			data->in_map = 2;
+	}
+	else if (is_orientation(line + i))
+		parse_texture(line + i + 3, data, NO, count);
 	else if (ft_strncmp(line + i, "F ", 2) == 0)
-		parse_color(line + i + 2, data, FLOOR);
+		parse_color(line + i + 2, data, FLOOR, count);
 	else if (ft_strncmp(line + i, "C ", 2) == 0)
-		parse_color(line + i + 2, data, CEILING);
+		parse_color(line + i + 2, data, CEILING, count);
 	else
-		parse_map(line, data);
-	return (true);
+		parse_map_line(line, data, count);
+	return ;
 }
 
-/* static void	data_check(t_data *data)
+static void	data_check(t_data *data)
 {
-	printf("%s\n", data->map_string); //debug
 	if (data->ceiling_rgb == -1 || data->floor_rgb == -1)
-		error("Missing color", data);
+		error("Missing color", data, NULL, NULL);
 	// if (!data->no || !data->so || !data->we || !data->ea)
-	// 	error("Missing texture", data);
+	// 	error("Missing texture", data, NULL, NULL);
 	if (!data->map_string)
-		error("No map", data);	
-	if (wall_outline(data) == false)
-		error("The outline of the map must be walls", data);
+		error("No map", data, NULL, NULL);
 	if (data->character_nb != 1)
-		error("No character in map", data);
+		error("No character in map", data, NULL, NULL);
+	// if (wall_outline(data) == false)
+	// 	error("The outline of the map must be walls", data, NULL, NULL);
+}
 
-	//todo pas d'espace vide dans le labyrinthe
-} */
-
-t_data	*parse_file(char *map)
+static t_data	*data_init(void)
 {
-	char	*line;
 	t_data	*data;
-	int		count;
 
 	data = malloc(sizeof(t_data));
 	if (!data)
@@ -93,6 +80,17 @@ t_data	*parse_file(char *map)
 	data->floor = NULL;
 	data->ceiling_rgb = -1;
 	data->floor_rgb = -1;
+	data->in_map = 0;
+	return (data);
+}
+
+t_data	*parse_file(char *map)
+{
+	char	*line;
+	t_data	*data;
+	int		count;
+
+	data = data_init();
 	data->fd_map = open(map, O_RDONLY);
 	if (data->fd_map < 0)
 		error("Map file opening failure", data, NULL, NULL);
@@ -102,11 +100,10 @@ t_data	*parse_file(char *map)
 		line = get_next_line(data->fd_map);
 		if (!line)
 			break ;
-		if (process_line(line, data, count) == false)
-			count++;
+		process_line(line, data, &count);
 		free(line);
 	}
-	// data_check(data);
+	data_check(data);
 	close(data->fd_map);
 	return (data);
 }

@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_textures.c                                   :+:      :+:    :+:   */
+/*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:10:30 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/14 18:53:02 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:21:47 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D.h"
 
-void	parse_texture(char *line, t_data *data, t_option option)
+void	parse_texture(char *line, t_data *data, t_option option, int *count)
 {
 	(void)data;
 	(void)option;
 	(void)line;
-	printf(GREEN "%s\n" RESET, line); //debug
+	
 
+	int	len;
+
+	len = ft_strlen(line);
+	line[len - 1] = '\0';
+	printf(GREEN "%s\n" RESET, line); //debug
+	(*count)++;
 	// if (option == NO)
 	// {
 	// 	data->no = mlx_load_png(line);

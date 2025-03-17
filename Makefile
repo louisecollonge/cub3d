@@ -6,7 +6,7 @@
 #    By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/10 12:17:39 by lcollong          #+#    #+#              #
-#    Updated: 2025/03/14 18:02:15 by lcollong         ###   ########.fr        #
+#    Updated: 2025/03/17 15:30:12 by lcollong         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,10 +31,11 @@ MLX = $(MLX_BUILD_DIR)/libmlx42.a
 SRC = 	$(SRC_DIR)/main.c \
 		$(SRC_DIR)/get_next_line.c \
 		$(SRC_DIR)/$(PARSING_DIR)/parse.c \
-		$(SRC_DIR)/$(PARSING_DIR)/parse_textures.c \
-		$(SRC_DIR)/$(PARSING_DIR)/parse_color.c \
-		$(SRC_DIR)/$(PARSING_DIR)/parse_map.c \
-		$(SRC_DIR)/$(PARSING_DIR)/map_walls.c \
+		$(SRC_DIR)/$(PARSING_DIR)/textures.c \
+		$(SRC_DIR)/$(PARSING_DIR)/floor_ceiling.c \
+		$(SRC_DIR)/$(PARSING_DIR)/map.c \
+		$(SRC_DIR)/$(PARSING_DIR)/walls.c \
+		$(SRC_DIR)/$(PARSING_DIR)/utils.c \
 		$(SRC_DIR)/init.c \
 		$(SRC_DIR)/render.c \
 		$(SRC_DIR)/textures.c \

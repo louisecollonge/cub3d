@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:23:19 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/14 18:50:59 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:34:25 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_data
 	int				character_nb;
 	char			*map_string;
 	char			**map_tab;
+	int				in_map;
 }	t_data;
 
 typedef struct s_player
@@ -79,11 +80,14 @@ typedef struct s_game
 // Parsing
 t_data	*parse_args(int ac, char **av);
 t_data	*parse_file(char *file);
-void	parse_texture(char *line, t_data *data, t_option option);
-void	parse_color(char *line, t_data *data, t_option);
-void	parse_map(char *line, t_data *data);
+void	parse_texture(char *line, t_data *data, t_option option, int *count);
+void	parse_color(char *line, t_data *data, t_option, int *count);
+void	parse_map_line(char *line, t_data *data, int *count);
 bool	wall_outline(t_data *data);
 bool	empty_space(t_data *data);
+
+// Parsing utils
+bool	is_orientation(char *line);
 
 // Init
 void	init_game();
