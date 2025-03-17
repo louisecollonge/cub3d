@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:15:51 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/14 18:50:45 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/17 21:08:24 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	print_tab(char **tab) //debug
 
 void	cleanup(t_data *data)
 {
+	if (!data)
+		return ;
 	if (data->fd_map != -1)
 		close(data->fd_map);
 	if (data->map_string)

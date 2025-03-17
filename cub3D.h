@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:23:19 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/17 15:34:25 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/17 22:02:21 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # include <math.h>
 # include <X11/X.h>
 
+# define WIDTH 640
+# define HEIGHT 480
 # define GREY "\033[90m"
 # define BOLDRED "\033[1;31m"
 # define BLUE "\033[34m"
@@ -77,6 +79,28 @@ typedef struct s_game
 	char			**map; //carte du jeu en 2D
 }	t_game;
 
+//struct for bresenhams algo
+typedef struct s_line_vars
+{
+	int	dx;
+	int	dy;
+	int	sx;
+	int	sy;
+	int	err;
+	int	err2;
+	int	x_start;
+	int	y_start;
+}	t_line_vars;
+
+// used to pass coords in functions
+typedef struct s_coord
+{
+	int	x0;
+	int	x1;
+	int	y0;
+	int	y1;
+}	t_coord;
+
 // Parsing
 t_data	*parse_args(int ac, char **av);
 t_data	*parse_file(char *file);
@@ -92,10 +116,18 @@ bool	is_orientation(char *line);
 // Init
 void	init_game();
 
+// Drawing
+void	my_mlx_pixel_put(mlx_image_t *img, int x, int y, uint32_t color);
+void	draw_line(mlx_image_t *img, t_coord coord, uint32_t color);
+void	draw_line_loop_helper(t_line_vars *l_vars, t_coord *coord);
+void	clear_image(mlx_image_t *img);
+
 // Rendering
+int render_loop(t_game *game);
 
 // Input
-
+void	my_keyhook(mlx_key_data_t keydata, void *param);
+void	my_closehook(void *param);
 // Textures
 
 // Utils

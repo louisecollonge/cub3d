@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:23:01 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/14 18:44:48 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/17 22:03:02 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,22 @@ int	main(int ac, char **av)
 {
 	t_game	game;
 	t_data	*data;
-
-	(void)game;
-	data = parse_args(ac, av);
-	// init_game(&game);
-	// mlx_loop(game.mlx);
-	cleanup(data);
+	(void)ac;
+	(void)av;
+	//(void)game;
+	// data = parse_args(ac, av);
+	data = NULL;
+	init_game(&game, data);
+	if (render_loop(&game) == EXIT_FAILURE)
+	{
+		// cleanup(data);
+		return (EXIT_FAILURE);
+	}
+	// cleanup(data);
 	return (0);
 }
 
-/* 
+/*
 Fonctions autorisees :
 
 open, close, read

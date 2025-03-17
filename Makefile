@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+         #
+#    By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/10 12:17:39 by lcollong          #+#    #+#              #
-#    Updated: 2025/03/17 15:30:12 by lcollong         ###   ########.fr        #
+#    Updated: 2025/03/17 21:35:35 by amonfret         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 
 NAME = cub3D
 CC = cc
-CFLAGS += -Wall -Wextra -Werror -g 
+CFLAGS += -Wall -Wextra -Werror -g
 
 SRC_DIR = src
 PARSING_DIR = parsing
@@ -40,7 +40,9 @@ SRC = 	$(SRC_DIR)/main.c \
 		$(SRC_DIR)/render.c \
 		$(SRC_DIR)/textures.c \
 		$(SRC_DIR)/input.c \
-		$(SRC_DIR)/utils.c
+		$(SRC_DIR)/utils.c \
+		$(SRC_DIR)/drawing.c \
+
 
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
