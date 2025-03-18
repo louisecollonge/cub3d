@@ -6,7 +6,7 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:23:01 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/17 22:03:02 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/18 17:57:14 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,17 @@
 
 int	main(int ac, char **av)
 {
-	t_game	game;
-	t_data	*data;
+	t_game			game;
+	t_data			*data;
+	t_render_data	render_data;
 	(void)ac;
 	(void)av;
 	//(void)game;
 	// data = parse_args(ac, av);
 	data = NULL;
 	init_game(&game, data);
-	if (render_loop(&game) == EXIT_FAILURE)
+	init_render_data(&render_data);
+	if (render_loop(&game, &render_data) == EXIT_FAILURE)
 	{
 		// cleanup(data);
 		return (EXIT_FAILURE);

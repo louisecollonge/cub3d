@@ -6,11 +6,11 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 22:04:34 by amonfret          #+#    #+#             */
-/*   Updated: 2025/03/17 22:04:37 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/18 17:42:51 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../../cub3D.h"
 
 static void	set_line_vars(t_line_vars *l_vars, t_coord coord)
 {

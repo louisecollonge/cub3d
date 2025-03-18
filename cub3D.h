@@ -6,7 +6,7 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:23:19 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/17 22:02:21 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/18 17:55:26 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,36 @@ typedef struct s_coord
 	int	y1;
 }	t_coord;
 
+//struct for vertical line drawing
+typedef struct s_vertical
+{
+	int	draw_start;
+	int	draw_end;
+}	t_vertical;
+
+typedef struct s_render_data
+{
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+	double 	time;
+	double	old_time;
+}	t_render_data;
+
+// Drawing
+void	my_mlx_pixel_put(mlx_image_t *img, int x, int y, uint32_t color);
+void	draw_line(mlx_image_t *img, t_coord coord, uint32_t color);
+void	draw_line_loop_helper(t_line_vars *l_vars, t_coord *coord);
+void	vertical_line(mlx_image_t *img, int x,
+	t_vertical vert, uint32_t color);
+void	clear_image(mlx_image_t *img);
+
+// Rendering
+int render_loop(t_game *game, t_render_data *render_data);
+
 // Parsing
 t_data	*parse_args(int ac, char **av);
 t_data	*parse_file(char *file);
@@ -116,15 +146,6 @@ bool	is_orientation(char *line);
 // Init
 void	init_game();
 
-// Drawing
-void	my_mlx_pixel_put(mlx_image_t *img, int x, int y, uint32_t color);
-void	draw_line(mlx_image_t *img, t_coord coord, uint32_t color);
-void	draw_line_loop_helper(t_line_vars *l_vars, t_coord *coord);
-void	clear_image(mlx_image_t *img);
-
-// Rendering
-int render_loop(t_game *game);
-
 // Input
 void	my_keyhook(mlx_key_data_t keydata, void *param);
 void	my_closehook(void *param);
@@ -136,7 +157,6 @@ void	cleanup(t_data *data);
 int		tab_line_nb(char **tab);
 void	print_tab(char **tab); //debug
 
-
 // Get Next Line
 char	*ft_strncpy(char *dest, char *src, unsigned int n);
 char	*add_buff(char *big, char *small);
@@ -147,6 +167,5 @@ char	*get_next_line(int fd);
 char	*remain(char *str);
 void	*ft_calloc(size_t nmemb, size_t size);
 size_t	ft_strlen(const char *s);
-
 
 #endif

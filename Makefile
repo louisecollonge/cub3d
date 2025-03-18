@@ -6,7 +6,7 @@
 #    By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/10 12:17:39 by lcollong          #+#    #+#              #
-#    Updated: 2025/03/17 21:35:35 by amonfret         ###   ########.fr        #
+#    Updated: 2025/03/18 17:47:52 by amonfret         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ CFLAGS += -Wall -Wextra -Werror -g
 
 SRC_DIR = src
 PARSING_DIR = parsing
+RENDER_DIR = render
 GNL_DIR = get_next_line
 OBJ_DIR = obj
 
@@ -36,13 +37,13 @@ SRC = 	$(SRC_DIR)/main.c \
 		$(SRC_DIR)/$(PARSING_DIR)/map.c \
 		$(SRC_DIR)/$(PARSING_DIR)/walls.c \
 		$(SRC_DIR)/$(PARSING_DIR)/utils.c \
+		$(SRC_DIR)/$(RENDER_DIR)/render.c \
+		$(SRC_DIR)/$(RENDER_DIR)/drawing.c \
+		$(SRC_DIR)/$(RENDER_DIR)/vertical_line.c \
 		$(SRC_DIR)/init.c \
-		$(SRC_DIR)/render.c \
 		$(SRC_DIR)/textures.c \
 		$(SRC_DIR)/input.c \
-		$(SRC_DIR)/utils.c \
-		$(SRC_DIR)/drawing.c \
-
+		$(SRC_DIR)/utils.c
 
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 

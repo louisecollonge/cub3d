@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   vertical_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/10 14:15:01 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/18 17:56:35 by amonfret         ###   ########.fr       */
+/*   Created: 2025/03/18 17:03:25 by amonfret          #+#    #+#             */
+/*   Updated: 2025/03/18 17:42:56 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../../cub3D.h"
 
-/*
-- charger map .cub
-- initialiser MLX42
-- charger les textures
-*/
-
-void	init_game(t_game *game, t_data *data)
+void	vertical_line(mlx_image_t *img, int x, t_vertical vert, uint32_t color)
 {
-	game->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", true);
-	if (!game->mlx)
+	int			y;
+
+	if (x < 0 || x >= (int)img->width)
+		return;
+	if (vert.draw_start < 0)
+		vert.draw_start = 0;
+	if (vert.draw_end >= (int)img->height)
+		vert.draw_end = img->height - 1;
+
+	y = vert.draw_start;
+	while (y <= vert.draw_end)
 	{
-		cleanup(data);
-		exit(EXIT_FAILURE);
+		my_mlx_pixel_put(img, x, y, color);
+		y++;
 	}
 }
