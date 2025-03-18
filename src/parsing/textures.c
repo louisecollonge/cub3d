@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:10:30 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/17 15:52:39 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/18 17:37:47 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	parse_texture(char *line, t_data *data, t_option option, int *count)
 	line[len - 1] = '\0';
 	// printf(GREEN "%s\n" RESET, line); //debug
 	(*count)++;
+	if (data->no != NULL || data->so != NULL || data->we != NULL || data->ea != NULL)
+		error("Texture duplicate", data, line, NULL);
 	// if (option == NO)
 	// {
 	// 	data->no = mlx_load_png(line);

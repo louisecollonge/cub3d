@@ -6,17 +6,29 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:33:26 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/17 15:12:11 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/18 15:33:57 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D.h"
+
+static char	*delete_end_spaces(char *line)
+{
+	int		i;
+
+	i = ft_strlen(line) - 1;
+	while (acceptable_char(line[i]) == false)
+		line[i--] = '\0';
+	line[i + 1] = '\n';
+	return (line);
+}
 
 static void	realloc_line(t_data *data, char *line)
 {
 	char	*tmp;
 
 	tmp = NULL;
+	line = delete_end_spaces(line);
 	if (!data->map_string)
 	{
 		data->map_string = ft_strdup(line);
@@ -37,7 +49,7 @@ static void	realloc_line(t_data *data, char *line)
 	}
 }
 
-void	parse_map_line(char *line, t_data *data, int *count)
+void	parse_map_line(t_data *data, int *count)
 {
 	int			i;
 
@@ -46,19 +58,19 @@ void	parse_map_line(char *line, t_data *data, int *count)
 	if (data->in_map == 0)
 		data->in_map = 1;
 	else if (data->in_map == 2)
-		error("Empty line in map", data, line, NULL);
-	while (line[i])
+		error("Empty line in map", data, NULL, NULL);
+	while (data->line[i])
 	{
-		if (line[i] != ' ' && line[i] != '\t' && line[i] != '\n'
-			&& line[i] != '1' && line[i] != '0' && line[i] != 'N'
-			&& line[i] != 'S' && line[i] != 'W' && line[i] != 'E')
-			error("Wrong character in map", data, line, NULL);
-		if (line[i] == 'N' || line[i] == 'S'
-			|| line[i] == 'W' || line[i] == 'E')
+		if (data->line[i] != ' ' && data->line[i] != '\t' && data->line[i] != '\n'
+			&& data->line[i] != '1' && data->line[i] != '0' && data->line[i] != 'N'
+			&& data->line[i] != 'S' && data->line[i] != 'W' && data->line[i] != 'E')
+			error("Wrong character in map", data, NULL, NULL);
+		if (data->line[i] == 'N' || data->line[i] == 'S'
+			|| data->line[i] == 'W' || data->line[i] == 'E')
 			data->character_nb++;
 		if (data->character_nb > 1)
-			error("Too many characters in map", data, line, NULL);
+			error("Too many characters in map", data, NULL, NULL);
 		i++;
 	}
-	realloc_line(data, line);
+	realloc_line(data, data->line);
 }
