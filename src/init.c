@@ -6,7 +6,7 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:15:01 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/18 17:56:35 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/18 20:05:24 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,7 @@ void	init_game(t_game *game, t_data *data)
 		cleanup(data);
 		exit(EXIT_FAILURE);
 	}
+	game->map = data->map_tab;
+	game->img = NULL;
+	game->data = data;
 }

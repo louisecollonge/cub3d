@@ -6,7 +6,7 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:23:01 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/18 18:29:56 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/18 20:45:55 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,23 @@ int	main(int ac, char **av)
 	t_game			game;
 	t_data			*data;
 	t_render_data	render_data;
-	(void)ac;
-	(void)av;
+
 	//(void)game;
-	// data = parse_args(ac, av);
-	data = NULL;
+	data = parse_args(ac, av);
 	init_game(&game, data);
-	// init_render_data(&render_data);
+	init_render_data(&game, &render_data);
 	if (render_loop(&game, &render_data) == EXIT_FAILURE)
 	{
-		// cleanup(data);
+		printf("renderloop error\n");
+		cleanup(data);
+		mlx_terminate(game.mlx);
 		return (EXIT_FAILURE);
 	}
-	// cleanup(data);
+	my_mlx_close(&game);
+	printf("here\n");
 	return (0);
 }
+
 
 /*
 Fonctions autorisees :

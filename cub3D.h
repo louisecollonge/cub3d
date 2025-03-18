@@ -6,7 +6,7 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:23:19 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/18 17:55:26 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/18 20:44:39 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ typedef struct s_game
 	t_player		player;
 	mlx_texture_t	**textures; // tableau de textures
 	char			**map; //carte du jeu en 2D
+	t_data			*data; //pointer to data for cleanup
 }	t_game;
 
 //struct for bresenhams algo
@@ -130,7 +131,7 @@ void	vertical_line(mlx_image_t *img, int x,
 void	clear_image(mlx_image_t *img);
 
 // Rendering
-int render_loop(t_game *game, t_render_data *render_data);
+int		render_loop(t_game *game, t_render_data *render_data);
 
 // Parsing
 t_data	*parse_args(int ac, char **av);
@@ -148,8 +149,13 @@ bool	space(char **tab, size_t x, size_t y);
 bool	zero(char **tab, size_t x, size_t y);
 bool	end_of_map(t_data *data);
 
-// Init
-void	init_game();
+// Init game and render data
+void	init_game(t_game *game, t_data *data);
+void	init_render_data(t_game *game, t_render_data *render_data);
+void	set_starting_position(t_game *game, t_render_data *render_data);
+void	set_starting_direction(t_game *game, t_render_data *render_data);
+void	set_camera_plane(t_render_data *render_data);
+void	init_time(t_render_data *render_data);
 
 // Input
 void	my_keyhook(mlx_key_data_t keydata, void *param);
@@ -161,6 +167,11 @@ void	error(char *s, t_data *data, void *p1, void *p2);
 void	cleanup(t_data *data);
 size_t	tab_line_nb(char **tab);
 void	print_tab(char **tab); //debug
+int		get_map_height(char **map);
+int		get_map_width(char **map);
+
+//close window and cleanup
+void	my_mlx_close(void *param);
 
 // Get Next Line
 char	*ft_strncpy(char *dest, char *src, unsigned int n);
