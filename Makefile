@@ -33,7 +33,7 @@ SRC = 	$(SRC_DIR)/main.c \
 		$(SRC_DIR)/get_next_line.c \
 		$(SRC_DIR)/$(PARSING_DIR)/parse.c \
 		$(SRC_DIR)/$(PARSING_DIR)/textures.c \
-		$(SRC_DIR)/$(PARSING_DIR)/floor_ceiling.c \
+		$(SRC_DIR)/$(PARSING_DIR)/colors_floor_ceiling.c \
 		$(SRC_DIR)/$(PARSING_DIR)/map.c \
 		$(SRC_DIR)/$(PARSING_DIR)/walls.c \
 		$(SRC_DIR)/$(PARSING_DIR)/utils.c \
@@ -43,7 +43,8 @@ SRC = 	$(SRC_DIR)/main.c \
 		$(SRC_DIR)/init.c \
 		$(SRC_DIR)/textures.c \
 		$(SRC_DIR)/input.c \
-		$(SRC_DIR)/utils.c
+		$(SRC_DIR)/utils.c \
+		$(SRC_DIR)/cleanup.c
 
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 

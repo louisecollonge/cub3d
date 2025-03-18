@@ -12,21 +12,11 @@
 
 #include "../cub3D.h"
 
-static void	free_tab(char **tab)
-{
-	int	i;
-
-	i = 0;
-	while (tab[i])
-		free(tab[i++]);
-	free(tab);
-}
-
 void	print_tab(char **tab) //debug
 {
 	int	i = 0;
 
-	while(tab[i])
+	while (tab[i])
 		printf("%s\n", tab[i++]);
 }
 
@@ -61,9 +51,9 @@ void	error(char *s, t_data *data, void *p1, void *p2)
 	exit(EXIT_FAILURE);
 }
 
-int	tab_line_nb(char **tab)
+size_t	tab_line_nb(char **tab)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (tab[i])

@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:24:20 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/17 15:50:17 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/18 17:29:47 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,28 +27,30 @@ t_data	*parse_args(int ac, char **av)
 	return (parse_file(av[1]));
 }
 
-static void	process_line(char *line, t_data *data, int *count)
+static void	process_line(t_data *data, int *count)
 {
 	int	i;
 
 	i = 0;
-	while (line[i] == ' ' || line[i] == '\t')
+	while (data->line[i] == ' ' || data->line[i] == '\t')
 		i++;
-	if (ft_strncmp(line + i, "\n", 2) == 0)
+	if (ft_strncmp(data->line + i, "\n", 2) == 0)
 	{
 		if (*count < 7)
 			return ;
 		else if (data->in_map == 1)
 			data->in_map = 2;
 	}
-	else if (is_orientation(line + i))
-		parse_texture(line + i + 3, data, NO, count);
-	else if (ft_strncmp(line + i, "F ", 2) == 0)
-		parse_color(line + i + 2, data, FLOOR, count);
-	else if (ft_strncmp(line + i, "C ", 2) == 0)
-		parse_color(line + i + 2, data, CEILING, count);
+	else if (is_orientation(data->line + i))
+		parse_texture(data->line + i + 3, data, NO, count);
+	else if (ft_strncmp(data->line + i, "F ", 2) == 0)
+		parse_color(data->line + i + 2, data, FLOOR, count);
+	else if (ft_strncmp(data->line + i, "C ", 2) == 0)
+		parse_color(data->line + i + 2, data, CEILING, count);
+	// else if (end_of_map(data) == false)
+	// 	error("Map must be at the end of the file", data, NULL, NULL);
 	else
-		parse_map_line(line, data, count);
+		parse_map_line(data, count);
 	return ;
 }
 
@@ -81,12 +83,16 @@ static t_data	*data_init(void)
 	data->ceiling_rgb = -1;
 	data->floor_rgb = -1;
 	data->in_map = 0;
+	data->line = NULL;
+	data->no = NULL;
+	data->so = NULL;
+	data->we = NULL;
+	data->ea = NULL;
 	return (data);
 }
 
 t_data	*parse_file(char *map)
 {
-	char	*line;
 	t_data	*data;
 	int		count;
 
@@ -97,11 +103,11 @@ t_data	*parse_file(char *map)
 	count = 0;
 	while (data->fd_map >= 0)
 	{
-		line = get_next_line(data->fd_map);
-		if (!line)
+		data->line = get_next_line(data->fd_map);
+		if (!data->line)
 			break ;
-		process_line(line, data, &count);
-		free(line);
+		process_line(data, &count);
+		free(data->line);
 	}
 	data_check(data);
 	close(data->fd_map);
