@@ -6,7 +6,7 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:23:01 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/18 19:54:55 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/18 20:09:02 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@ int	main(int ac, char **av)
 		mlx_terminate(game.mlx);
 		return (EXIT_FAILURE);
 	}
-	// mlx_delete_image(game.mlx, game.img);
-	// mlx_terminate(game.mlx);
-	cleanup(data);
+	my_mlx_close(&game);
 	printf("here\n");
 	return (0);
 }

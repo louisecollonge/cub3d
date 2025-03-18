@@ -6,7 +6,7 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:23:19 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/18 19:14:41 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/18 20:08:31 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ typedef struct s_game
 	t_player		player;
 	mlx_texture_t	**textures; // tableau de textures
 	char			**map; //carte du jeu en 2D
+	t_data			*data; //pointer to data for cleanup
 }	t_game;
 
 //struct for bresenhams algo
@@ -163,6 +164,9 @@ void	error(char *s, t_data *data, void *p1, void *p2);
 void	cleanup(t_data *data);
 size_t	tab_line_nb(char **tab);
 void	print_tab(char **tab); //debug
+
+//close window and cleanup
+void	my_mlx_close(void *param);
 
 // Get Next Line
 char	*ft_strncpy(char *dest, char *src, unsigned int n);
