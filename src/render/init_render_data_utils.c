@@ -1,45 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   starting_pos.c                                     :+:      :+:    :+:   */
+/*   init_render_data_utils.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 19:04:04 by amonfret          #+#    #+#             */
-/*   Updated: 2025/03/18 19:15:30 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/18 20:43:56 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D.h"
 
-static int get_map_height(char **map)
-{
-	int height;
-	height = 0;
-	while (map[height])
-		height++;
-	return (height);
-}
-
-static int get_map_width(char **map)
-{
-	int width;
-	int row_length;
-
-	width = 0;
-	int i;
-	i = 0;
-	while (map[i])
-	{
-		row_length = ft_strlen(map[i]);
-		if (row_length > width)
-			width = row_length;
-		i++;
-	}
-	return (width);
-}
-
-void set_starting_pos(t_game *game, t_render_data *render_data)
+void set_starting_position(t_game *game, t_render_data *render_data)
 {
 	int	width;
 	int	height;
@@ -67,3 +40,43 @@ void set_starting_pos(t_game *game, t_render_data *render_data)
 	}
 }
 
+void	set_starting_direction(t_game *game, t_render_data *render_data)
+{
+	int	x;
+	int	y;
+
+	x = (int)(render_data->pos_x);
+	y = (int)(render_data->pos_y);
+	if (game->map[y][x] == 'N')
+	{
+		render_data->dir_x = 0.0;
+		render_data->dir_y = -1.0;
+	}
+	else if (game->map[y][x] == 'S')
+	{
+		render_data->dir_x = 0.0;
+		render_data->dir_y = 1.0;
+	}
+	else if (game->map[y][x] == 'E')
+	{
+		render_data->dir_x = 1.0;
+		render_data->dir_y = 0.0;
+	}
+	else if (game->map[y][x] == 'W')
+	{
+		render_data->dir_x = -1.0;
+		render_data->dir_y = 0.0;
+	}
+}
+
+void	set_camera_plane(t_render_data *render_data)
+{
+	render_data->plane_x = render_data->dir_y;
+	render_data->plane_y = -render_data->dir_x;
+}
+
+void	init_time(t_render_data *render_data)
+{
+	render_data->time = 0.0;
+	render_data->old_time = 0.0;
+}

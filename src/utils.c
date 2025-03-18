@@ -6,7 +6,7 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:15:51 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/18 18:32:38 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/18 20:15:30 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,31 @@ char	*ft_strncpy(char *dest, char *src, unsigned int n)
 		i++;
 	}
 	return (dest);
+}
+
+int get_map_height(char **map)
+{
+	int height;
+	height = 0;
+	while (map[height])
+		height++;
+	return (height);
+}
+
+int get_map_width(char **map)
+{
+	int width;
+	int row_length;
+
+	width = 0;
+	int i;
+	i = 0;
+	while (map[i])
+	{
+		row_length = ft_strlen(map[i]);
+		if (row_length > width)
+			width = row_length;
+		i++;
+	}
+	return (width);
 }
