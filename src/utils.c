@@ -6,7 +6,7 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:15:51 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/17 21:08:24 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/18 18:32:38 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,36 +20,36 @@ void	print_tab(char **tab) //debug
 		printf("%s\n", tab[i++]);
 }
 
-void	cleanup(t_data *data)
-{
-	if (!data)
-		return ;
-	if (data->fd_map != -1)
-		close(data->fd_map);
-	if (data->map_string)
-		free(data->map_string);
-	if (data->map_tab)
-		free_tab(data->map_tab);
-	if (data->floor)
-		free(data->floor); //! cause invalid free et je ne sais pas pourquoi
-	if (data->ceiling)
-		free(data->ceiling);
-	//! faut-il free ou close les textures ?
-	if (data)
-		free(data);
-}
+// void	cleanup(t_data *data)
+// {
+// 	if (!data)
+// 		return ;
+// 	if (data->fd_map != -1)
+// 		close(data->fd_map);
+// 	if (data->map_string)
+// 		free(data->map_string);
+// 	if (data->map_tab)
+// 		free_tab(data->map_tab);
+// 	if (data->floor)
+// 		free(data->floor); //! cause invalid free et je ne sais pas pourquoi
+// 	if (data->ceiling)
+// 		free(data->ceiling);
+// 	//! faut-il free ou close les textures ?
+// 	if (data)
+// 		free(data);
+// }
 
-void	error(char *s, t_data *data, void *p1, void *p2)
-{
-	printf(BOLDRED "Error\n" RESET);
-	printf(RED "%s\n" RESET, s);
-	cleanup(data);
-	if (p1)
-		free(p1);
-	if (p2)
-		free(p2);
-	exit(EXIT_FAILURE);
-}
+// void	error(char *s, t_data *data, void *p1, void *p2)
+// {
+// 	printf(BOLDRED "Error\n" RESET);
+// 	printf(RED "%s\n" RESET, s);
+// 	cleanup(data);
+// 	if (p1)
+// 		free(p1);
+// 	if (p2)
+// 		free(p2);
+// 	exit(EXIT_FAILURE);
+// }
 
 size_t	tab_line_nb(char **tab)
 {

@@ -6,14 +6,15 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:15:22 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/18 17:55:26 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/18 18:31:06 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D.h"
 
-int	render_loop(t_game *game)
+int	render_loop(t_game *game, t_render_data *render_data)
 {
+	(void)render_data;
 	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	if (!game->img)
 	{
