@@ -6,7 +6,7 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:23:19 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/18 17:55:26 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/18 19:14:41 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ void	vertical_line(mlx_image_t *img, int x,
 void	clear_image(mlx_image_t *img);
 
 // Rendering
-int render_loop(t_game *game, t_render_data *render_data);
+int		render_loop(t_game *game, t_render_data *render_data);
 
 // Parsing
 t_data	*parse_args(int ac, char **av);
@@ -149,7 +149,9 @@ bool	zero(char **tab, size_t x, size_t y);
 bool	end_of_map(t_data *data);
 
 // Init
-void	init_game();
+void	init_game(t_game *game, t_data *data);
+void	init_render_data(t_game *game, t_render_data *render_data);
+void	set_starting_pos(t_game *game, t_render_data *render_data);
 
 // Input
 void	my_keyhook(mlx_key_data_t keydata, void *param);
