@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:23:19 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/18 17:26:27 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/18 17:55:26 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # include <math.h>
 # include <X11/X.h>
 
+# define WIDTH 640
+# define HEIGHT 480
 # define GREY "\033[90m"
 # define BOLDRED "\033[1;31m"
 # define BLUE "\033[34m"
@@ -78,6 +80,58 @@ typedef struct s_game
 	char			**map; //carte du jeu en 2D
 }	t_game;
 
+//struct for bresenhams algo
+typedef struct s_line_vars
+{
+	int	dx;
+	int	dy;
+	int	sx;
+	int	sy;
+	int	err;
+	int	err2;
+	int	x_start;
+	int	y_start;
+}	t_line_vars;
+
+// used to pass coords in functions
+typedef struct s_coord
+{
+	int	x0;
+	int	x1;
+	int	y0;
+	int	y1;
+}	t_coord;
+
+//struct for vertical line drawing
+typedef struct s_vertical
+{
+	int	draw_start;
+	int	draw_end;
+}	t_vertical;
+
+typedef struct s_render_data
+{
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+	double 	time;
+	double	old_time;
+}	t_render_data;
+
+// Drawing
+void	my_mlx_pixel_put(mlx_image_t *img, int x, int y, uint32_t color);
+void	draw_line(mlx_image_t *img, t_coord coord, uint32_t color);
+void	draw_line_loop_helper(t_line_vars *l_vars, t_coord *coord);
+void	vertical_line(mlx_image_t *img, int x,
+	t_vertical vert, uint32_t color);
+void	clear_image(mlx_image_t *img);
+
+// Rendering
+int render_loop(t_game *game, t_render_data *render_data);
+
 // Parsing
 t_data	*parse_args(int ac, char **av);
 t_data	*parse_file(char *file);
@@ -97,10 +151,9 @@ bool	end_of_map(t_data *data);
 // Init
 void	init_game();
 
-// Rendering
-
 // Input
-
+void	my_keyhook(mlx_key_data_t keydata, void *param);
+void	my_closehook(void *param);
 // Textures
 
 // Utils
@@ -108,7 +161,6 @@ void	error(char *s, t_data *data, void *p1, void *p2);
 void	cleanup(t_data *data);
 size_t	tab_line_nb(char **tab);
 void	print_tab(char **tab); //debug
-
 
 // Get Next Line
 char	*ft_strncpy(char *dest, char *src, unsigned int n);
@@ -120,6 +172,5 @@ char	*get_next_line(int fd);
 char	*remain(char *str);
 void	*ft_calloc(size_t nmemb, size_t size);
 size_t	ft_strlen(const char *s);
-
 
 #endif
