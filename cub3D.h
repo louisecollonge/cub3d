@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:23:19 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/17 15:34:25 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/18 17:26:27 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_data
 	mlx_texture_t	*ea;
 	int				fd_map;
 	int				character_nb;
+	char			*line;
 	char			*map_string;
 	char			**map_tab;
 	int				in_map;
@@ -82,12 +83,16 @@ t_data	*parse_args(int ac, char **av);
 t_data	*parse_file(char *file);
 void	parse_texture(char *line, t_data *data, t_option option, int *count);
 void	parse_color(char *line, t_data *data, t_option, int *count);
-void	parse_map_line(char *line, t_data *data, int *count);
+void	parse_map_line(t_data *data, int *count);
 bool	wall_outline(t_data *data);
 bool	empty_space(t_data *data);
 
 // Parsing utils
 bool	is_orientation(char *line);
+bool	acceptable_char(char c);
+bool	space(char **tab, size_t x, size_t y);
+bool	zero(char **tab, size_t x, size_t y);
+bool	end_of_map(t_data *data);
 
 // Init
 void	init_game();
@@ -101,7 +106,7 @@ void	init_game();
 // Utils
 void	error(char *s, t_data *data, void *p1, void *p2);
 void	cleanup(t_data *data);
-int		tab_line_nb(char **tab);
+size_t	tab_line_nb(char **tab);
 void	print_tab(char **tab); //debug
 
 
