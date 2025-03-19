@@ -6,7 +6,7 @@
 #    By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/17 16:47:41 by lcollong          #+#    #+#              #
-#    Updated: 2024/10/25 18:28:15 by lcollong         ###   ########.fr        #
+#    Updated: 2025/03/19 17:03:10 by lcollong         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRCS = 	ft_atoi.c \
 		ft_memmove.c \
 		ft_memset.c \
 		ft_strchr.c \
+		ft_strjoin.c \
 		ft_strlcat.c \
 		ft_strlcpy.c \
 		ft_strlen.c \
@@ -38,7 +39,6 @@ SRCS = 	ft_atoi.c \
 		ft_calloc.c \
 		ft_strdup.c \
 		ft_substr.c \
-		ft_strjoin.c \
 		ft_strtrim.c \
 		ft_split.c \
 		ft_itoa.c \

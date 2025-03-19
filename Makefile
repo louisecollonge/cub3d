@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+         #
+#    By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/10 12:17:39 by lcollong          #+#    #+#              #
-#    Updated: 2025/03/18 20:38:51 by amonfret         ###   ########.fr        #
+#    Updated: 2025/03/19 16:27:22 by lcollong         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ MLX_BUILD_DIR = $(MLX_DIR)/build
 MLX = $(MLX_BUILD_DIR)/libmlx42.a
 
 SRC = 	$(SRC_DIR)/main.c \
-		$(SRC_DIR)/get_next_line.c \
+		$(SRC_DIR)/get_next_line_bonus.c \
+		$(SRC_DIR)/get_next_line_utils_bonus.c \
 		$(SRC_DIR)/$(PARSING_DIR)/parse.c \
 		$(SRC_DIR)/$(PARSING_DIR)/textures.c \
 		$(SRC_DIR)/$(PARSING_DIR)/colors_floor_ceiling.c \
