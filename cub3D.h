@@ -6,7 +6,7 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:23:19 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/19 20:38:55 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/19 22:51:48 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # include <math.h>
 # include <X11/X.h>
 
-# define WIDTH 640
-# define HEIGHT 480
+# define WIDTH 1024
+# define HEIGHT 720
 # define GREY "\033[90m"
 # define BOLDRED "\033[1;31m"
 # define BLUE "\033[34m"
