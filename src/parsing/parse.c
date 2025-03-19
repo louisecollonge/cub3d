@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:24:20 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/19 16:37:21 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/19 17:52:27 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,19 @@ static void	process_line(t_data *data, int *count)
 
 static void	data_check(t_data *data)
 {
-	if (data->ceiling_rgb == -1 || data->floor_rgb == -1)
+	if (data->ceiling_rgb == -1 && data->floor_rgb == -1
+		&& !data->no && !data->so && !data->we && !data->ea
+		&& !data->map_string)
+		error("Missing textures, colors and/or map", data, NULL, NULL);
+	else if (data->ceiling_rgb == -1 || data->floor_rgb == -1)
 		error("Missing color", data, NULL, NULL);
-	if (!data->no || !data->so || !data->we || !data->ea)
+	else if (!data->no || !data->so || !data->we || !data->ea)
 		error("Missing texture", data, NULL, NULL);
-	if (!data->map_string)
-		error("No map", data, NULL, NULL);
-	if (data->character_nb != 1)
+	else if (!data->map_string)
+		error("Doesn't follow rule of description then map", data, NULL, NULL);
+	else if (data->character_nb != 1)
 		error("No character in map", data, NULL, NULL);
-	if (wall_outline(data) == false)
+	else if (wall_outline(data) == false)
 		error("The outline of the map must be walls", data, NULL, NULL);
 }
 
