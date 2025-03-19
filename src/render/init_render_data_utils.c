@@ -6,7 +6,7 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 19:04:04 by amonfret          #+#    #+#             */
-/*   Updated: 2025/03/19 21:36:19 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/19 22:00:46 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ void	set_starting_direction(t_game *game, t_render_data *render_data)
 	if (game->map[y][x] == 'N')
 	{
 		render_data->dir_x = 0.0;
-		render_data->dir_y = 1.0;
+		render_data->dir_y = -1.0;
 	}
 	else if (game->map[y][x] == 'S')
 	{
 		render_data->dir_x = 0.0;
-		render_data->dir_y = -1.0;
+		render_data->dir_y = 1.0;
 	}
 	else if (game->map[y][x] == 'E')
 	{

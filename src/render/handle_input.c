@@ -6,7 +6,7 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 19:05:48 by amonfret          #+#    #+#             */
-/*   Updated: 2025/03/19 21:33:20 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/19 22:10:37 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ static void	move_forward(t_game *game, t_render_data *data, double move_speed)
 {
 	if (mlx_is_key_down(game->mlx, MLX_KEY_UP))
 	{
-		if(game->map[(int)(data->pos_x + data->dir_x * move_speed)][(int)(data->pos_y)]!= '1')
+		if(game->map[(int)(data->pos_y)][(int)(data->pos_x + data->dir_x * move_speed)] != '1')
 			data->pos_x += data->dir_x * move_speed;
-		if(game->map[(int)(data->pos_x)][(int)(data->pos_y + data->dir_y * move_speed)] != '1')
+		if(game->map[(int)(data->pos_y + data->dir_y * move_speed)][(int)(data->pos_x)] != '1')
 			data->pos_y += data->dir_y * move_speed;
 	}
 
@@ -28,9 +28,9 @@ static void	move_backward(t_game *game, t_render_data *data, double move_speed)
 {
 	if (mlx_is_key_down(game->mlx, MLX_KEY_DOWN))
 	{
-		if (game->map[(int)(data->pos_x - data->dir_x * move_speed)][(int)(data->pos_y)] != '1')
+		if (game->map[(int)(data->pos_y)][(int)(data->pos_x - data->dir_x * move_speed)] != '1')
 			data->pos_x -= data->dir_x * move_speed;
-		if (game->map[(int)(data->pos_x)][(int)(data->pos_y - data->dir_y * move_speed)] != '1')
+		if (game->map[(int)(data->pos_y - data->dir_y * move_speed)][(int)(data->pos_x)] != '1')
 			data->pos_y -= data->dir_y * move_speed;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:08:37 by amonfret          #+#    #+#             */
-/*   Updated: 2025/03/19 21:22:59 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/19 22:09:02 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	dda(t_game *game, t_render_data *data)
 			data->map_y += data->step_y;
 			data->side = 1;
 		}
-		if (game->map[data->map_x][data->map_y] == '1')
+		if (game->map[data->map_y][data->map_x] == '1')
 		{
 			data->hit = 1;
 			set_wall_direction(data);
