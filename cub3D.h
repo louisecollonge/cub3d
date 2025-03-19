@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:23:19 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/19 13:39:48 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/19 19:15:20 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,16 +110,46 @@ typedef struct s_vertical
 	int	draw_end;
 }	t_vertical;
 
+typedef enum e_wall_direction
+{
+	EAST,
+	WEST,
+	SOUTH,
+	NORTH
+} t_direction;
+
 typedef struct s_render_data
 {
-	double	pos_x;
-	double	pos_y;
-	double	dir_x;
-	double	dir_y;
-	double	plane_x;
-	double	plane_y;
-	double 	time;
-	double	old_time;
+	double		pos_x; //x and y starting position
+	double		pos_y;
+	double		dir_x;// direction vector of player
+	double		dir_y;
+	double		plane_x; //perpendicular camera plane vector
+	double		plane_y;
+	double		camera_x; // x in camera space
+	double		ray_direction_x;
+	double		ray_direction_y;
+	int			map_x;
+	int			map_y;
+	double		side_dist_x;
+	double		side_dist_y;
+	double		delta_dist_x; //distance the ray must travel along the X-axis to reach the next vertical grid line.
+	double		delta_dist_y; //distance the ray must travel along the Y-axis to reach the next horizontal grid line.
+	double		perp_wall_dist;
+	double		step_x;
+	double		step_y;
+	int			hit;
+	int			side;
+	int			draw_start;
+	int			draw_end;
+	uint32_t	color;
+	double		time;
+	double		old_time;
+	double		current_time;
+	double		frame_time;
+	double		move_speed;
+	double		rot_speed;
+	t_direction wall_dir;
 }	t_render_data;
 
 // Drawing
@@ -132,7 +162,7 @@ void		clear_image(mlx_image_t *img);
 
 // Rendering
 int			render_loop(t_game *game, t_render_data *render_data);
-
+void		raycast(t_game *game, t_render_data *data);
 // Parsing
 t_data		*parse_args(int ac, char **av);
 t_data		*parse_file(char *file);
@@ -161,6 +191,7 @@ void		init_time(t_render_data *render_data);
 // Input
 void		my_keyhook(mlx_key_data_t keydata, void *param);
 void		my_closehook(void *param);
+void 		update_keys(t_game *game, t_render_data *data, double move_speed, double rot_speed);
 // Textures
 
 // Utils

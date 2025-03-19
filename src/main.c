@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:23:01 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/19 14:49:35 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/19 19:09:14 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,20 @@ int	main(int ac, char **av)
 	data = parse_args(ac, av);
 	init_game(&game, data);
 	init_render_data(&game, &render_data);
-	if (render_loop(&game, &render_data) == EXIT_FAILURE)
-	{
-		printf("renderloop error\n");
-		cleanup(data);
-		mlx_terminate(game.mlx);
-		return (EXIT_FAILURE);
-	}
+	// if (render_loop(&game, &render_data) == EXIT_FAILURE)
+	// {
+	// 	printf("renderloop error\n");
+	// 	cleanup(data);
+	// 	mlx_terminate(game.mlx);
+	// 	return (EXIT_FAILURE);
+	// }
+
+	mlx_key_hook(game.mlx, &my_keyhook, &game);
+	mlx_close_hook(game.mlx, &my_closehook, &game);
+
+	mlx_loop_hook(game.mlx, (void (*)(void *))render_loop, &render_data);
+	mlx_loop(game.mlx);
+	mlx_terminate(game.mlx);
 	my_mlx_close(&game);
 	printf("finished main()\n"); //debug
 	// cleanup(data); //debug

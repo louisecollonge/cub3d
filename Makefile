@@ -6,7 +6,7 @@
 #    By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/10 12:17:39 by lcollong          #+#    #+#              #
-#    Updated: 2025/03/18 20:38:51 by amonfret         ###   ########.fr        #
+#    Updated: 2025/03/19 19:06:15 by amonfret         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,8 @@ SRC = 	$(SRC_DIR)/main.c \
 		$(SRC_DIR)/$(RENDER_DIR)/vertical_line.c \
 		$(SRC_DIR)/$(RENDER_DIR)/init_render_data.c \
 		$(SRC_DIR)/$(RENDER_DIR)/init_render_data_utils.c \
+		$(SRC_DIR)/$(RENDER_DIR)/raycast.c \
+		$(SRC_DIR)/$(RENDER_DIR)/handle_input.c \
 		$(SRC_DIR)/init.c \
 		$(SRC_DIR)/textures.c \
 		$(SRC_DIR)/input.c \
