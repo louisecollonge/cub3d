@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:23:01 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/18 20:45:55 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/19 14:49:35 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	main(int ac, char **av)
 	t_data			*data;
 	t_render_data	render_data;
 
-	//(void)game;
 	data = parse_args(ac, av);
 	init_game(&game, data);
 	init_render_data(&game, &render_data);
@@ -30,7 +29,8 @@ int	main(int ac, char **av)
 		return (EXIT_FAILURE);
 	}
 	my_mlx_close(&game);
-	printf("here\n");
+	printf("finished main()\n"); //debug
+	// cleanup(data); //debug
 	return (0);
 }
 
