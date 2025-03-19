@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 18:20:38 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/18 15:30:32 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:18:53 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static bool	first_tab_line(t_data *data, size_t *col)
 		if (data->map_tab[0][*col] != '1' && data->map_tab[0][*col] != ' '
 			&& data->map_tab[0][*col] != '\t')
 		{
-			printf("Wrong space at row 0 and col %zu\n", *col); //debug
+			// printf("Wrong space at row 0 and col %zu\n", *col); //debug
 			return (false);
 		}
 		(*col)++;
@@ -63,7 +63,7 @@ static bool	last_tab_line(t_data *data, size_t *row)
 		if (data->map_tab[*row][col] != '1' && data->map_tab[*row][col] != ' '
 			&& data->map_tab[*row][col] != '\t')
 		{
-			printf("Wrong space at row %zu and col %zu\n", *row, col); //debug
+			// printf("Wrong space at row %zu and col %zu\n", *row, col); //debug
 			return (false);
 		}
 		col++;
