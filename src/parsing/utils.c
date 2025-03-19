@@ -6,21 +6,20 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:13:24 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/18 17:42:59 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/19 14:46:15 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D.h"
 
-//! ne peut pas fonctionner sans la mlx pour les textures
-/* bool	end_of_map(t_data *data)
+bool	end_of_map(t_data *data)
 {
 	if (data->ceiling_rgb == -1 || data->floor_rgb == -1 || !data->no
 		|| !data->so || !data->we || !data->ea)
 		return (false);
 	else
 		return (true);
-} */
+}
 
 bool	is_orientation(char *line)
 {
@@ -31,6 +30,21 @@ bool	is_orientation(char *line)
 		return (true);
 	else
 		return (false);
+}
+
+t_option	get_option(char *line)
+{
+	t_option	option;
+
+	if (ft_strncmp(line, "NO ", 3) == 0)
+		option = NO;
+	else if (ft_strncmp(line, "SO ", 3) == 0)
+		option = SO;
+	else if (ft_strncmp(line, "WE ", 3) == 0)
+		option = WE;
+	else
+		option = EA;
+	return (option);
 }
 
 bool	space(char **tab, size_t x, size_t y)

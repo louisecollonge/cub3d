@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:33:26 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/18 15:33:57 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/19 13:31:04 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	parse_map_line(t_data *data, int *count)
 		if (data->line[i] != ' ' && data->line[i] != '\t' && data->line[i] != '\n'
 			&& data->line[i] != '1' && data->line[i] != '0' && data->line[i] != 'N'
 			&& data->line[i] != 'S' && data->line[i] != 'W' && data->line[i] != 'E')
-			error("Wrong character in map", data, NULL, NULL);
+				error("Wrong character in map", data, NULL, NULL);
 		if (data->line[i] == 'N' || data->line[i] == 'S'
 			|| data->line[i] == 'W' || data->line[i] == 'E')
 			data->character_nb++;

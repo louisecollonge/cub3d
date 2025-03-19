@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:24:20 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/18 17:29:47 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/19 14:19:21 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static void	process_line(t_data *data, int *count)
 	i = 0;
 	while (data->line[i] == ' ' || data->line[i] == '\t')
 		i++;
+	// printf("Line = <%s>\n", data->line); //debug
 	if (ft_strncmp(data->line + i, "\n", 2) == 0)
 	{
 		if (*count < 7)
@@ -42,13 +43,13 @@ static void	process_line(t_data *data, int *count)
 			data->in_map = 2;
 	}
 	else if (is_orientation(data->line + i))
-		parse_texture(data->line + i + 3, data, NO, count);
+		parse_texture(data->line + i + 3, data, get_option(data->line), count);
 	else if (ft_strncmp(data->line + i, "F ", 2) == 0)
 		parse_color(data->line + i + 2, data, FLOOR, count);
 	else if (ft_strncmp(data->line + i, "C ", 2) == 0)
 		parse_color(data->line + i + 2, data, CEILING, count);
-	// else if (end_of_map(data) == false)
-	// 	error("Map must be at the end of the file", data, NULL, NULL);
+	else if (end_of_map(data) == false)
+		error("Map must be at the end of the file", data, NULL, NULL);
 	else
 		parse_map_line(data, count);
 	return ;
@@ -58,8 +59,8 @@ static void	data_check(t_data *data)
 {
 	if (data->ceiling_rgb == -1 || data->floor_rgb == -1)
 		error("Missing color", data, NULL, NULL);
-	// if (!data->no || !data->so || !data->we || !data->ea)
-	// 	error("Missing texture", data, NULL, NULL);
+	if (!data->no || !data->so || !data->we || !data->ea)
+		error("Missing texture", data, NULL, NULL);
 	if (!data->map_string)
 		error("No map", data, NULL, NULL);
 	if (data->character_nb != 1)
@@ -107,7 +108,8 @@ t_data	*parse_file(char *map)
 		if (!data->line)
 			break ;
 		process_line(data, &count);
-		free(data->line);
+		if (data->line)
+			free(data->line);
 	}
 	data_check(data);
 	close(data->fd_map);
