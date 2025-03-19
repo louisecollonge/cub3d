@@ -6,7 +6,7 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:08:37 by amonfret          #+#    #+#             */
-/*   Updated: 2025/03/19 18:32:51 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/19 21:22:59 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	dda(t_game *game, t_render_data *data)
 			data->map_y += data->step_y;
 			data->side = 1;
 		}
-		if (game->map[data->map_y][data->map_x] > 0)
+		if (game->map[data->map_x][data->map_y] == '1')
 		{
 			data->hit = 1;
 			set_wall_direction(data);
@@ -138,13 +138,11 @@ void	set_color(t_render_data *data)
 	else if (data->wall_dir == SOUTH)
 		data->color =0x00FF00FF;
 	else if (data->wall_dir == EAST)
-		data->color = 0x000000FF;
+		data->color = 0x0000FFFF;
 	else if (data->wall_dir == WEST)
 		data->color = 0xFFFFFFFF;
 	else
 		data->color = 0x00FFFFFF;
-	if (data->side == 1)
-		data->color = data->color / 2;
 }
 
 //!debug
@@ -183,9 +181,9 @@ void	raycast(t_game *game, t_render_data *data)
 		set_line_height(game, data);
 		set_color(data);
 		vertical_line(game->img, x, (t_vertical){data->draw_start, data->draw_end}, data->color);
-		//!
-		if (x == 0)
-			print_data(data);
+		// //!
+		// if (x == 0)
+		// 	print_data(data);
 		x++;
 	}
 }

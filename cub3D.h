@@ -6,7 +6,7 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:23:19 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/19 19:15:20 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/19 20:38:55 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,14 @@ typedef struct s_render_data
 	t_direction wall_dir;
 }	t_render_data;
 
+typedef struct s_ray_data
+{
+	t_game			*game;
+	t_render_data	*render_data;
+} t_ray_data;
+
+//!debug
+void	print_data(t_render_data *data);
 // Drawing
 void		my_mlx_pixel_put(mlx_image_t *img, int x, int y, uint32_t color);
 void		draw_line(mlx_image_t *img, t_coord coord, uint32_t color);
@@ -161,7 +169,7 @@ void		vertical_line(mlx_image_t *img, int x,
 void		clear_image(mlx_image_t *img);
 
 // Rendering
-int			render_loop(t_game *game, t_render_data *render_data);
+void			render_loop(void *param);
 void		raycast(t_game *game, t_render_data *data);
 // Parsing
 t_data		*parse_args(int ac, char **av);
