@@ -6,34 +6,39 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:15:22 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/18 20:37:49 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/19 21:37:37 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D.h"
 
-int	render_loop(t_game *game, t_render_data *render_data)
+void	render_loop(void *param)
 {
-	(void)render_data;
-	if (!game->img)
+	t_ray_data	*data;
+
+	data = (t_ray_data *)param;
+	if (!data->game->img)
 	{
-		game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
-		if (!game->img)
+		data->game->img = mlx_new_image(data->game->mlx, WIDTH, HEIGHT);
+		if (!data->game->img)
 		{
-			mlx_terminate(game->mlx);
-			return (EXIT_FAILURE);
+			my_mlx_close(data->game->mlx);
+			// mlx_terminate(data->game->mlx);
+			// exit (EXIT_FAILURE);
 		}
-	mlx_image_to_window(game->mlx, game->img, 0, 0);
+	mlx_image_to_window(data->game->mlx, data->game->img, 0, 0);
 	}
-	clear_image(game->img);
+	data->render_data->current_time = mlx_get_time();
+	data->render_data->frame_time = data->render_data->current_time - data->render_data->old_time;
+	data->render_data->old_time = data->render_data->current_time;
 
+	data->render_data->move_speed = data->render_data->frame_time * 5.0;
+	data->render_data->rot_speed = data->render_data->frame_time * 3.0;
 
-	mlx_key_hook(game->mlx, &my_keyhook, game);
-	mlx_close_hook(game->mlx, &my_closehook, game);
+	update_keys(data->game, data->render_data, data->render_data->move_speed, data->render_data->rot_speed);
+	clear_image(data->game->img);
+	raycast(data->game, data->render_data);
 
-
-	mlx_loop(game->mlx);
-	return (0);
 }
 
 /*

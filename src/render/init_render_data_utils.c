@@ -6,7 +6,7 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 19:04:04 by amonfret          #+#    #+#             */
-/*   Updated: 2025/03/18 20:43:56 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/19 22:00:46 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,17 @@ void	set_starting_direction(t_game *game, t_render_data *render_data)
 
 void	set_camera_plane(t_render_data *render_data)
 {
-	render_data->plane_x = render_data->dir_y;
-	render_data->plane_y = -render_data->dir_x;
+	// render_data->plane_x = render_data->dir_y;
+	// render_data->plane_y = -render_data->dir_x;
+	double		fov_rad;
+	double		plane_length;
+	double		fov_deg;
+
+	fov_deg = 66;
+	fov_rad = fov_deg * M_PI / 180.0;
+	plane_length = tan(fov_rad / 2.0);
+	render_data->plane_x = render_data->dir_y * plane_length;
+	render_data->plane_y = -render_data->dir_x * plane_length;
 }
 
 void	init_time(t_render_data *render_data)

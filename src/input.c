@@ -6,7 +6,7 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:15:42 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/18 20:12:06 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/19 20:43:51 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	my_mlx_close(void *param)
 void	my_keyhook(mlx_key_data_t keydata, void *param)
 {
 	t_game	*game;
-	//!
-	printf("keydata.os_key = %d\n", keydata.os_key);
-	printf("keydata.key = %d\n", keydata.key);
+	// //!
+	// printf("keydata.os_key = %d\n", keydata.os_key);
+	// printf("keydata.key = %d\n", keydata.key);
 	game = (t_game *)param;
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 		my_mlx_close(game);
