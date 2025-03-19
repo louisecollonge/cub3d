@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:10:30 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/19 13:43:43 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:20:52 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static void	texture_duplicate_check(t_data *data, t_option option)
 {
+	// printf("<%s>\n", data->line); //debug
+	
 	if (option == NO && data->no != NULL)
 		error("North texture duplicate", data, NULL, NULL);
 	else if (option == SO && data->so != NULL)
@@ -24,6 +26,7 @@ static void	texture_duplicate_check(t_data *data, t_option option)
 		error("East texture duplicate", data, NULL, NULL);
 }
 
+//todo norme
 void	parse_texture(char *line, t_data *data, t_option option, int *count)
 {
 	int			len;

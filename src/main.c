@@ -39,7 +39,7 @@ int	main(int ac, char **av)
 	mlx_loop(game.mlx);
 	mlx_terminate(game.mlx);
 	my_mlx_close(&game);
-	printf("finished main()\n"); //debug
+	printf(GREEN "finished main()\n" RESET); //debug
 	// cleanup(data); //debug
 	return (0);
 }

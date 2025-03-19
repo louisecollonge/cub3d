@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:24:20 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/19 14:19:21 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/19 17:52:27 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static void	process_line(t_data *data, int *count)
 	i = 0;
 	while (data->line[i] == ' ' || data->line[i] == '\t')
 		i++;
-	// printf("Line = <%s>\n", data->line); //debug
 	if (ft_strncmp(data->line + i, "\n", 2) == 0)
 	{
 		if (*count < 7)
@@ -48,24 +47,26 @@ static void	process_line(t_data *data, int *count)
 		parse_color(data->line + i + 2, data, FLOOR, count);
 	else if (ft_strncmp(data->line + i, "C ", 2) == 0)
 		parse_color(data->line + i + 2, data, CEILING, count);
-	else if (end_of_map(data) == false)
-		error("Map must be at the end of the file", data, NULL, NULL);
-	else
+	else if (end_of_map(data) == true)
 		parse_map_line(data, count);
 	return ;
 }
 
 static void	data_check(t_data *data)
 {
-	if (data->ceiling_rgb == -1 || data->floor_rgb == -1)
+	if (data->ceiling_rgb == -1 && data->floor_rgb == -1
+		&& !data->no && !data->so && !data->we && !data->ea
+		&& !data->map_string)
+		error("Missing textures, colors and/or map", data, NULL, NULL);
+	else if (data->ceiling_rgb == -1 || data->floor_rgb == -1)
 		error("Missing color", data, NULL, NULL);
-	if (!data->no || !data->so || !data->we || !data->ea)
+	else if (!data->no || !data->so || !data->we || !data->ea)
 		error("Missing texture", data, NULL, NULL);
-	if (!data->map_string)
-		error("No map", data, NULL, NULL);
-	if (data->character_nb != 1)
+	else if (!data->map_string)
+		error("Doesn't follow rule of description then map", data, NULL, NULL);
+	else if (data->character_nb != 1)
 		error("No character in map", data, NULL, NULL);
-	if (wall_outline(data) == false)
+	else if (wall_outline(data) == false)
 		error("The outline of the map must be walls", data, NULL, NULL);
 }
 
@@ -108,8 +109,7 @@ t_data	*parse_file(char *map)
 		if (!data->line)
 			break ;
 		process_line(data, &count);
-		if (data->line)
-			free(data->line);
+		free(data->line);
 	}
 	data_check(data);
 	close(data->fd_map);

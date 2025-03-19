@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:13:24 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/19 14:46:15 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:19:57 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ bool	space(char **tab, size_t x, size_t y)
 		if (!(tab[x - 1][y] == '\t' || tab[x - 1][y] == ' '
 			|| tab[x - 1][y] == '1' || !tab[x - 1][y]))
 		{
-			printf("row %zu col %zu: pb on top\n", x, y);
+			// printf("row %zu col %zu: pb on top\n", x, y); //debug
 			return (false);
 		}
 	}
@@ -63,7 +63,7 @@ bool	space(char **tab, size_t x, size_t y)
 		if (!(tab[x][y - 1] == '\t' || tab[x][y - 1] == ' '
 			|| tab[x][y - 1] == '1' || !tab[x][y - 1]))
 		{
-			printf("row %zu col %zu: pb on the left\n", x, y);
+			// printf("row %zu col %zu: pb on the left\n", x, y); //debug
 			return (false);
 		}
 	}
@@ -72,7 +72,7 @@ bool	space(char **tab, size_t x, size_t y)
 		if (!(tab[x][y + 1] == '\t' || tab[x][y + 1] == ' '
 			|| tab[x][y + 1] == '1' || !tab[x][y + 1]))
 		{
-			printf("row %zu col %zu: pb on the right\n", x, y);
+			// printf("row %zu col %zu: pb on the right\n", x, y); //debug
 			return (false);
 		}
 	}
@@ -81,7 +81,7 @@ bool	space(char **tab, size_t x, size_t y)
 		if (!(tab[x + 1][y] == '\t' || tab[x + 1][y] == ' '
 			|| tab[x + 1][y] == '1' || !tab[x + 1][y]))
 		{
-			printf("row %zu col %zu: pb bellow\n", x, y);
+			// printf("row %zu col %zu: pb below\n", x, y); //debug
 			return (false);
 		}
 	}
@@ -98,24 +98,23 @@ bool	acceptable_char(char c)
 
 bool	zero(char **tab, size_t x, size_t y)
 {
-	// print_tab(tab); //debug
 	if ((x - 1) >= 0 && acceptable_char(tab[x - 1][y]) == false)
 	{
-		printf("Error\nproblem with 0 at row %zu col %zu, with char on top\n", x, y); //debug
+		// printf("Error\nproblem with 0 at row %zu col %zu, with char on top\n", x, y); //debug
 		return (false);
 	}
 	if (y == 0)
 		return (false);
 	if ((y - 1) >= 0 && acceptable_char(tab[x][y - 1]) == false)
 	{
-		printf("Error\nproblem with 0 at row %zu col %zu, with char on the left\n", x, y); //debug
+		// printf("Error\nproblem with 0 at row %zu col %zu, with char on the left\n", x, y); //debug
 		return (false);
 	}
 	if ((y + 1) >= ft_strlen(tab[x]))
 	{
 		if (acceptable_char(tab[x][y + 1]) == false)
 		{
-			printf("Error\nproblem with 0 at row %zu col %zu, with char on the right\n", x, y); //debug
+			// printf("Error\nproblem with 0 at row %zu col %zu, with char on the right\n", x, y); //debug
 			return (false);
 		}
 	}
@@ -123,7 +122,7 @@ bool	zero(char **tab, size_t x, size_t y)
 	{
 		if (acceptable_char(tab[x + 1][y]) == false)
 		{
-			printf("Error\nproblem with 0 at row %zu col %zu, with char bellow\n", x, y); //debug
+			// printf("Error\nproblem with 0 at row %zu col %zu, with char bellow\n", x, y); //debug
 			return (false);
 		}
 	}

@@ -214,14 +214,10 @@ int			get_map_width(char **map);
 void		my_mlx_close(void *param);
 
 // Get Next Line
-char		*ft_strncpy(char *dest, char *src, unsigned int n);
-char		*add_buff(char *big, char *small);
-char		*ft_strchr(const char *s, int c);
-char		*read_file(char		*str, int fd);
-char		*ft_get_line(char *str);
-char		*get_next_line(int fd);
-char		*remain(char *str);
-void		*ft_calloc(size_t nmemb, size_t size);
-size_t		ft_strlen(const char *s);
+char	*get_next_line(int fd);
+size_t	ft_strlen2(const char *s);
+size_t	ft_strlcpy2(char *dst, const char *src, size_t size);
+void	*free_mem(char **remainder, char **buffer);
+char	*ft_strjoin_gnl(char *s1, char *s2);
 
 #endif

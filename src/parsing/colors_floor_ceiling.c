@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:11:55 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/18 17:15:28 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:37:59 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,33 +48,30 @@ static int	get_rgb(char *option, t_data *data)
 	return ((r << 16) | (g << 8) | b);
 }
 
-static char	*parse_color_helper(t_data *data, char *line, t_option option)
+static char	*parse_color_helper(t_data *data, char *line, int start_index, t_option option)
 {
-	int	start;
 	int	i;
 
 	i = 0;
 	if (option == CEILING)
 	{
-		start = i;
 		while (line[i])
 			(i)++;
-		data->ceiling = ft_substr(line, start, i - 1);
+		data->ceiling = ft_substr(line, start_index, i - 1);
 		if (!data->ceiling)
 			error ("Malloc failure", data, NULL, NULL);
 		data->ceiling_rgb = get_rgb(data->ceiling, data);
-		printf(YELLOW "Ceiling color RGB = %#08x\n" RESET, data->ceiling_rgb); //debug
+		// printf(YELLOW "Ceiling color RGB = %#08x\n" RESET, data->ceiling_rgb); //debug
 	}
 	else if (option == FLOOR)
 	{
-		start = i;
 		while (line[i])
 			(i)++;
-		data->floor = ft_substr(line, start, i - 1);
+		data->floor = ft_substr(line, start_index, i - 1);
 		if (!data->floor)
 			error ("Malloc failure", data, NULL, NULL);
 		data->floor_rgb = get_rgb(data->floor, data);
-		printf(YELLOW "Floor color RGB = %#08x\n" RESET, data->floor_rgb); //debug
+		// printf(YELLOW "Floor color RGB = %#08x\n" RESET, data->floor_rgb); //debug
 	}
 	return (NULL);
 }
@@ -82,12 +79,14 @@ static char	*parse_color_helper(t_data *data, char *line, t_option option)
 void	parse_color(char *line, t_data *data, t_option option, int *count)
 {
 	int		i;
+	int		start_index;
 	char	*failure;
 
 	i = 0;
 	(*count)++;
 	while (line[i] == ' ' || line[i] == '\t')
 		i++;
+	start_index = i;
 	while (line[i] && line[i] != '\n')
 	{
 		if (!(ft_isdigit(line[i]) || line[i] == ',' || line[i] == '\t'
@@ -100,7 +99,7 @@ void	parse_color(char *line, t_data *data, t_option option, int *count)
 		}
 		i++;
 	}
-	failure = parse_color_helper(data, line, option);
+	failure = parse_color_helper(data, line, start_index, option);
 	if (failure)
 		error(failure, data, NULL, NULL);
 }
