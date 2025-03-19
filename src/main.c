@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:23:01 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/19 15:21:35 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/19 17:56:37 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 
 int	main(int ac, char **av)
 {
-	// t_game			game;
+	t_game			game;
 	t_data			*data;
-	// t_render_data	render_data;
+	t_render_data	render_data;
 
 	data = parse_args(ac, av);
-	// init_game(&game, data);
-	// init_render_data(&game, &render_data);
-	// if (render_loop(&game, &render_data) == EXIT_FAILURE)
-	// {
-	// 	printf("renderloop error\n");
-	// 	cleanup(data);
-	// 	mlx_terminate(game.mlx);
-	// 	return (EXIT_FAILURE);
-	// }
-	// my_mlx_close(&game);
+	init_game(&game, data);
+	init_render_data(&game, &render_data);
+	if (render_loop(&game, &render_data) == EXIT_FAILURE)
+	{
+		printf("renderloop error\n");
+		cleanup(data);
+		mlx_terminate(game.mlx);
+		return (EXIT_FAILURE);
+	}
+	my_mlx_close(&game);
 	printf(GREEN "finished main()\n" RESET); //debug
-	cleanup(data); //debug
+	// cleanup(data); //debug
 	return (0);
 }
 
