@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:13:24 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/19 15:19:57 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/20 16:16:39 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,14 @@ t_option	get_option(char *line)
 {
 	t_option	option;
 
+	option = -1;
 	if (ft_strncmp(line, "NO ", 3) == 0)
 		option = NO;
 	else if (ft_strncmp(line, "SO ", 3) == 0)
 		option = SO;
 	else if (ft_strncmp(line, "WE ", 3) == 0)
 		option = WE;
-	else
+	else if (ft_strncmp(line, "EA ", 3) == 0)
 		option = EA;
 	return (option);
 }

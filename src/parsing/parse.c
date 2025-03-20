@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:24:20 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/19 17:52:27 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/20 16:21:57 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	process_line(t_data *data, int *count)
 			data->in_map = 2;
 	}
 	else if (is_orientation(data->line + i))
-		parse_texture(data->line + i + 3, data, get_option(data->line), count);
+		parse_texture(data->line + i + 3, data, get_option(data->line + i), count);
 	else if (ft_strncmp(data->line + i, "F ", 2) == 0)
 		parse_color(data->line + i + 2, data, FLOOR, count);
 	else if (ft_strncmp(data->line + i, "C ", 2) == 0)

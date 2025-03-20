@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:11:55 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/19 15:37:59 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/20 16:00:57 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	check_number(char *option, size_t i, t_data *data)
 {
 	if (i > ft_strlen(option) - 1)
 		error("Wrong color", data, NULL, NULL);
-	if (!option[i] || !(option[i] == '+' || ft_isdigit(option[i])))
+	if (!option[i] || !(option[i] == '+' || option[i] == ' ' || ft_isdigit(option[i])))
 		error("Wrong color", data, NULL, NULL);
 	if (option[i] == '+')
 		if (!ft_isdigit(option[i + 1]))
