@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:15:33 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/20 14:15:40 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/20 16:11:36 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-/* 
+/*
 charger les textures
 */
 
@@ -37,14 +37,14 @@ tex	**load_textures(t_game *game, t_data *data)
 	// printf(YELLOW "%s\n" RESET,data->so); //debug
 	tab[1] = mlx_load_png(data->so);
 	if (!tab[1])
-		texture_error("North texture cannot be loaded", data, game);
+		texture_error("South texture cannot be loaded", data, game);
 	// printf(YELLOW "%s\n" RESET,data->we); //debug
 	tab[2] = mlx_load_png(data->we);
 	if (!tab[2])
-		texture_error("North texture cannot be loaded", data, game);
+		texture_error("West texture cannot be loaded", data, game);
 	// printf(YELLOW "%s\n" RESET,data->ea); //debug
 	tab[3] = mlx_load_png(data->ea);
 	if (!tab[3])
-		texture_error("North texture cannot be loaded", data, game);
+		texture_error("Eest texture cannot be loaded", data, game);
 	return (tab);
 }
