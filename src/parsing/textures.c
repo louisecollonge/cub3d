@@ -6,20 +6,14 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:10:30 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/20 13:19:02 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/20 14:01:05 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D.h"
 
-static void	texture_duplicate_check(t_data *data, t_option option, char *line,
-	int *count)
+static void	texture_duplicate_check(t_data *data, t_option option)
 {
-	int	len;
-
-	len = ft_strlen(line);
-	line[len - 1] = '\0';
-	(*count)++;
 	if (option == NO && data->no != NULL)
 		error("North texture duplicate", data, NULL, NULL);
 	else if (option == SO && data->so != NULL)
@@ -30,31 +24,38 @@ static void	texture_duplicate_check(t_data *data, t_option option, char *line,
 		error("East texture duplicate", data, NULL, NULL);
 }
 
+static char	*full_texture_path(char *line, t_data *data)
+{
+	char	*tmp;
+	char	*path;
+
+	tmp = ft_strdup(line);
+	if (!tmp)
+		error("Malloc failure", data, NULL, NULL);
+	path = ft_strjoin("textures/", tmp);
+	if (!path)
+	{
+		free(tmp);
+		error("Malloc failure", data, NULL, NULL);
+	}
+	free(tmp);
+	return (path);
+}
+
 void	parse_texture(char *line, t_data *data, t_option option, int *count)
 {
-	texture_duplicate_check(data, option, line, count);
+	int	len;
+
+	len = ft_strlen(line);
+	line[len - 1] = '\0';
+	(*count)++;	
+	texture_duplicate_check(data, option);
 	if (option == NO)
-	{
-		data->no = ft_strdup(line);
-		if (!data->no)
-			error("Malloc failure", data, NULL, NULL);
-	}
+		data->no = full_texture_path(line, data);
 	else if (option == SO)
-	{
-		data->so = ft_strdup(line);
-		if (!data->so)
-			error("Malloc failure", data, NULL, NULL);
-	}
+		data->so = full_texture_path(line, data);
 	else if (option == WE)
-	{
-		data->we = ft_strdup(line);
-		if (!data->we)
-			error("Malloc failure", data, NULL, NULL);
-	}
+		data->we = full_texture_path(line, data);
 	else if (option == EA)
-	{
-		data->ea = ft_strdup(line);
-		if (!data->ea)
-			error("Malloc failure", data, NULL, NULL);
-	}
+		data->ea = full_texture_path(line, data);
 }

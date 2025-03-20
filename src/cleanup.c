@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:33:16 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/19 14:18:42 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/20 14:17:36 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,23 @@ static void	free_tab(char **tab)
 	while (tab[i])
 		free(tab[i++]);
 	free(tab);
+}
+
+void	delete_texture_tab(tex **textures)
+{
+	int	i;
+
+	i = 0;
+	if (textures)
+	{
+		while (i < 4)
+		{
+			if (textures[i])
+				mlx_delete_texture(textures[i]);
+			i++;
+		}
+		free(textures);
+	}
 }
 
 void	cleanup(t_data *data)

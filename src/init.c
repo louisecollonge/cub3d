@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:15:01 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/19 18:09:13 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/20 14:04:49 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,5 @@ void	init_game(t_game *game, t_data *data)
 	game->map = data->map_tab;
 	game->img = NULL;
 	game->data = data;
+	game->textures = load_textures(game, data);
 }

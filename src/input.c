@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:15:42 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/19 20:43:51 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/20 14:08:42 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	my_mlx_close(void *param)
 	t_game	*game;
 
 	game = (t_game *)param;
+	delete_texture_tab(game->textures);
 	mlx_close_window(game->mlx);
 	mlx_delete_image(game->mlx, game->img);
 	mlx_terminate(game->mlx);
