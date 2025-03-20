@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:33:26 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/20 16:58:02 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/20 17:13:47 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,12 @@ void	parse_map_line(t_data *data, int *count)
 	while (data->line[i])
 	{
 		if (data->line[i] == '\t')
-			error("Replace tabs with spaces for correct alignment", data, NULL, NULL);
+			error("Replace tabs w/ spaces for alignment", data, NULL, NULL);
 		if (data->line[i] != ' ' && data->line[i] != '\n'
-			&& data->line[i] != '1' && data->line[i] != '0' && data->line[i] != 'N'
-			&& data->line[i] != 'S' && data->line[i] != 'W' && data->line[i] != 'E')
-				error("Wrong character in map", data, NULL, NULL);
+			&& data->line[i] != '1' && data->line[i] != '0'
+			&& data->line[i] != 'N' && data->line[i] != 'S'
+			&& data->line[i] != 'W' && data->line[i] != 'E')
+			error("Wrong character in map", data, NULL, NULL);
 		if (data->line[i] == 'N' || data->line[i] == 'S'
 			|| data->line[i] == 'W' || data->line[i] == 'E')
 			data->character_nb++;

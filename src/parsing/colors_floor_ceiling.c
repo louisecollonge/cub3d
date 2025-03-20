@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:11:55 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/20 16:00:57 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/20 17:15:27 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ static void	check_number(char *option, size_t i, t_data *data)
 {
 	if (i > ft_strlen(option) - 1)
 		error("Wrong color", data, NULL, NULL);
-	if (!option[i] || !(option[i] == '+' || option[i] == ' ' || ft_isdigit(option[i])))
+	if (!option[i] || !(option[i] == '+' || option[i] == ' '
+			|| ft_isdigit(option[i])))
 		error("Wrong color", data, NULL, NULL);
 	if (option[i] == '+')
 		if (!ft_isdigit(option[i + 1]))
@@ -48,7 +49,8 @@ static int	get_rgb(char *option, t_data *data)
 	return ((r << 16) | (g << 8) | b);
 }
 
-static char	*parse_color_helper(t_data *data, char *line, int start_index, t_option option)
+static char	*parse_color_helper(t_data *data, char *line, int start_index,
+	t_option option)
 {
 	int	i;
 
@@ -61,7 +63,6 @@ static char	*parse_color_helper(t_data *data, char *line, int start_index, t_opt
 		if (!data->ceiling)
 			error ("Malloc failure", data, NULL, NULL);
 		data->ceiling_rgb = get_rgb(data->ceiling, data);
-		// printf(YELLOW "Ceiling color RGB = %#08x\n" RESET, data->ceiling_rgb); //debug
 	}
 	else if (option == FLOOR)
 	{
@@ -71,7 +72,6 @@ static char	*parse_color_helper(t_data *data, char *line, int start_index, t_opt
 		if (!data->floor)
 			error ("Malloc failure", data, NULL, NULL);
 		data->floor_rgb = get_rgb(data->floor, data);
-		// printf(YELLOW "Floor color RGB = %#08x\n" RESET, data->floor_rgb); //debug
 	}
 	return (NULL);
 }
@@ -90,7 +90,7 @@ void	parse_color(char *line, t_data *data, t_option option, int *count)
 	while (line[i] && line[i] != '\n')
 	{
 		if (!(ft_isdigit(line[i]) || line[i] == ',' || line[i] == '\t'
-			|| line[i] == ' ' || line[i] == '+'))
+				|| line[i] == ' ' || line[i] == '+'))
 		{
 			if (option == FLOOR)
 				error("Wrong floor color", data, NULL, NULL);
