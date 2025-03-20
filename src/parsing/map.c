@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:33:26 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/19 17:50:38 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/20 16:58:02 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	parse_map_line(t_data *data, int *count)
 	if (data->in_map == 0)
 		data->in_map = 1;
 	else if (data->in_map == 2)
-		error("Empty line in map", data, NULL, NULL);
+		error("Empty line(s) in map", data, NULL, NULL);
 	while (data->line[i])
 	{
 		if (data->line[i] == '\t')

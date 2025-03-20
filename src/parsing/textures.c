@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:10:30 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/20 16:47:59 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/20 17:03:08 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	parse_texture(char *line, t_data *data, t_option option, int *count)
 	i = ft_strlen(line);
 	line[i - 1] = '\0'; //delete the \n
 	i--;
-	while (line[i] != 'g') //the g of ".png"
+	while (line[i] != 'g' && i >= 0) //the g of ".png"
 		line[i--] = '\0';
 	i = 0;
 	while (line[i] == ' ' || line[i] == '\t') //delete the spaces between the orientation and the path
