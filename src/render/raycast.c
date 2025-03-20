@@ -6,7 +6,7 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:08:37 by amonfret          #+#    #+#             */
-/*   Updated: 2025/03/19 22:09:02 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/20 16:29:22 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ void	calc_ray_direction(t_game *game, t_render_data *data, int x)
 	data->camera_x = 2 * x / (double)game->img->width - 1;
 	data->ray_direction_x = data->dir_x + data->plane_x * data->camera_x;
 	data->ray_direction_y = data->dir_y + data->plane_y * data->camera_x;
-	//!
-	// printf("camera_x: %f\nray_dir_x: %f\n ray_dir_y%f\n", data->camera_x, data->ray_direction_x, data->ray_direction_y);
 }
 void	set_map_cell(t_render_data *data)
 {
@@ -181,9 +179,6 @@ void	raycast(t_game *game, t_render_data *data)
 		set_line_height(game, data);
 		set_color(data);
 		vertical_line(game->img, x, (t_vertical){data->draw_start, data->draw_end}, data->color);
-		// //!
-		// if (x == 0)
-		// 	print_data(data);
 		x++;
 	}
 }
