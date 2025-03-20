@@ -6,7 +6,7 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:15:33 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/20 16:11:36 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/20 16:12:05 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,6 @@ tex	**load_textures(t_game *game, t_data *data)
 	// printf(YELLOW "%s\n" RESET,data->ea); //debug
 	tab[3] = mlx_load_png(data->ea);
 	if (!tab[3])
-		texture_error("Eest texture cannot be loaded", data, game);
+		texture_error("East texture cannot be loaded", data, game);
 	return (tab);
 }
