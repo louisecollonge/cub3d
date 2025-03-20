@@ -6,7 +6,7 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:08:37 by amonfret          #+#    #+#             */
-/*   Updated: 2025/03/20 16:29:22 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/20 19:17:56 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,8 @@ void	set_perp_wall_dist(t_render_data *data)
 		data->perp_wall_dist = (data->side_dist_x - data->delta_dist_x);
 	else
 		data->perp_wall_dist = (data->side_dist_y - data->delta_dist_y);
-	if (data->perp_wall_dist < 0.0001)
-		data->perp_wall_dist = 0.0001;
+	if (data->perp_wall_dist < 0.2)
+		data->perp_wall_dist = 0.2;
 }
 
 void	set_line_height(t_game *game, t_render_data *data)
@@ -121,26 +121,24 @@ void	set_line_height(t_game *game, t_render_data *data)
 
 	line_height = (int)(height / data->perp_wall_dist);
 	data->draw_start = -line_height / 2 + height / 2;
-	if(data->draw_start < 0)
-		data->draw_start = 0;
+	// if(data->draw_start < 0)
+	// 	data->draw_start = 0;
 	data->draw_end = line_height / 2 + height / 2;
-	if (data->draw_end >= height)
-		data->draw_end = height - 1;
+	// if (data->draw_end >= height)
+	// 	data->draw_end = height - 1;
 }
 
-//! replace with textures
-void	set_color(t_render_data *data)
+//sets the correct texture index for a wall
+void	set_texture_index(t_render_data *data)
 {
 	if (data->wall_dir == NORTH)
-		data->color = 0xFF0000FF;
+		data->texture_index = 0;
 	else if (data->wall_dir == SOUTH)
-		data->color =0x00FF00FF;
+		data->texture_index = 1;
 	else if (data->wall_dir == EAST)
-		data->color = 0x0000FFFF;
+		data->texture_index = 2;
 	else if (data->wall_dir == WEST)
-		data->color = 0xFFFFFFFF;
-	else
-		data->color = 0x00FFFFFF;
+		data->texture_index = 3;
 }
 
 //!debug
@@ -162,6 +160,17 @@ void	print_data(t_render_data *data)
 	printf("wall_direction %d\n", data->wall_dir);
 }
 
+//gives a value between 0.0 and 1.0 indicating
+//where along the wall (horizontally) the ray hit
+void	set_wall_x(t_render_data *data)
+{
+	if (data->side == 0)
+		data->wall_x = data->pos_y + data->perp_wall_dist * data->ray_direction_y;
+	else
+		data->wall_x = data->pos_x + data->perp_wall_dist * data->ray_direction_x;
+	data->wall_x -= floor(data->wall_x);
+}
+
 void	raycast(t_game *game, t_render_data *data)
 {
 	int	x;
@@ -177,8 +186,10 @@ void	raycast(t_game *game, t_render_data *data)
 		dda(game, data);
 		set_perp_wall_dist(data);
 		set_line_height(game, data);
-		set_color(data);
-		vertical_line(game->img, x, (t_vertical){data->draw_start, data->draw_end}, data->color);
+		set_wall_x(data);
+		set_texture_index(data);
+		draw_texture_stripe(game->img, x,game, data);
+		// vertical_line(game->img, x, (t_vertical){data->draw_start, data->draw_end}, data->color);
 		x++;
 	}
 }
