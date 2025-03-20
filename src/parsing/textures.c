@@ -6,16 +6,20 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:10:30 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/19 15:20:52 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/20 13:19:02 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D.h"
 
-static void	texture_duplicate_check(t_data *data, t_option option)
+static void	texture_duplicate_check(t_data *data, t_option option, char *line,
+	int *count)
 {
-	// printf("<%s>\n", data->line); //debug
-	
+	int	len;
+
+	len = ft_strlen(line);
+	line[len - 1] = '\0';
+	(*count)++;
 	if (option == NO && data->no != NULL)
 		error("North texture duplicate", data, NULL, NULL);
 	else if (option == SO && data->so != NULL)
@@ -26,15 +30,9 @@ static void	texture_duplicate_check(t_data *data, t_option option)
 		error("East texture duplicate", data, NULL, NULL);
 }
 
-//todo norme
 void	parse_texture(char *line, t_data *data, t_option option, int *count)
 {
-	int			len;
-
-	len = ft_strlen(line);
-	line[len - 1] = '\0';
-	(*count)++;
-	texture_duplicate_check(data, option);
+	texture_duplicate_check(data, option, line, count);
 	if (option == NO)
 	{
 		data->no = ft_strdup(line);
