@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:10:30 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/20 14:01:05 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/20 14:54:38 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,11 @@ static void	texture_duplicate_check(t_data *data, t_option option)
 
 static char	*full_texture_path(char *line, t_data *data)
 {
-	char	*tmp;
 	char	*path;
 
-	tmp = ft_strdup(line);
-	if (!tmp)
-		error("Malloc failure", data, NULL, NULL);
-	path = ft_strjoin("textures/", tmp);
+	path = ft_strdup(line);
 	if (!path)
-	{
-		free(tmp);
 		error("Malloc failure", data, NULL, NULL);
-	}
-	free(tmp);
 	return (path);
 }
 
