@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:15:33 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/20 16:12:05 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/20 16:45:22 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@ static void	texture_error(char *str, t_data *data, t_game *game)
 tex	**load_textures(t_game *game, t_data *data)
 {
 	tex	**tab;
+
+	// printf("north = <%s>\n", data->no); //debug
+	// printf("south = <%s>\n", data->so); //debug
+	// printf("west = <%s>\n", data->we); //debug
+	// printf("south = <%s>\n", data->ea); //debug
 
 	tab = malloc(sizeof(tex *) * 4); //4 murs
 	if (!tab)

@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:10:30 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/20 16:23:25 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/20 16:47:59 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,17 @@ void	parse_texture(char *line, t_data *data, t_option option, int *count)
 	i--;
 	while (line[i] != 'g') //the g of ".png"
 		line[i--] = '\0';
+	i = 0;
+	while (line[i] == ' ' || line[i] == '\t') //delete the spaces between the orientation and the path
+		i++;
 	(*count)++;
-
-	// printf(BLUE "option = %d " RESET, option); //debug
-	// printf(YELLOW "<%s>\n" RESET, line); //debug
-
 	texture_duplicate_check(data, option);
 	if (option == NO)
-		data->no = full_texture_path(line, data);
+		data->no = full_texture_path(line + i, data);
 	else if (option == SO)
-		data->so = full_texture_path(line, data);
+		data->so = full_texture_path(line + i, data);
 	else if (option == WE)
-		data->we = full_texture_path(line, data);
+		data->we = full_texture_path(line + i, data);
 	else if (option == EA)
-		data->ea = full_texture_path(line, data);
+		data->ea = full_texture_path(line + i, data);
 }
