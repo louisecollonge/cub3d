@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:23:01 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/19 20:01:31 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/20 13:44:13 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int ac, char **av)
 	t_ray_data		ray_data;
 
 	data = parse_args(ac, av);
-	init_game(&game, data);
+	init_game(&game, data); //contains texture loading
 	init_render_data(&game, &render_data);
 	// if (render_loop(&game, &render_data) == EXIT_FAILURE)
 	// {
@@ -40,7 +40,6 @@ int	main(int ac, char **av)
 	mlx_terminate(game.mlx);
 	my_mlx_close(&game);
 	printf(GREEN "finished main()\n" RESET); //debug
-	// cleanup(data); //debug
 	return (0);
 }
 

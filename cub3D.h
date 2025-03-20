@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:23:19 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/19 22:51:48 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/20 14:08:24 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define RESET "\033[0m"
 
 # define BUFFER_SIZE 1 //gnl
+# define tex mlx_texture_t //for lisibility
 
 typedef enum	s_option
 {
@@ -48,20 +49,20 @@ typedef enum	s_option
 
 typedef struct s_data
 {
-	char			*floor;
-	char			*ceiling;
-	int				floor_rgb;
-	int				ceiling_rgb;
-	char			*no;
-	char			*so;
-	char			*we;
-	char			*ea;
-	int				fd_map;
-	int				character_nb;
-	char			*line;
-	char			*map_string;
-	char			**map_tab;
-	int				in_map;
+	char	*floor;
+	char	*ceiling;
+	int		floor_rgb;
+	int		ceiling_rgb;
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+	int		fd_map;
+	int		character_nb;
+	char	*line;
+	char	*map_string;
+	char	**map_tab;
+	int		in_map;
 }	t_data;
 
 typedef struct s_player
@@ -76,7 +77,7 @@ typedef struct s_game
 	mlx_t			*mlx; //pointeur instance MLX42
 	mlx_image_t		*img; //image affichee par render
 	t_player		player;
-	mlx_texture_t	**textures; // tableau de textures
+	tex				**textures; // tableau de textures
 	char			**map; //carte du jeu en 2D
 	t_data			*data; //pointer to data for cleanup
 }	t_game;
@@ -159,7 +160,8 @@ typedef struct s_ray_data
 } t_ray_data;
 
 //!debug
-void	print_data(t_render_data *data);
+void		print_data(t_render_data *data);
+
 // Drawing
 void		my_mlx_pixel_put(mlx_image_t *img, int x, int y, uint32_t color);
 void		draw_line(mlx_image_t *img, t_coord coord, uint32_t color);
@@ -169,8 +171,9 @@ void		vertical_line(mlx_image_t *img, int x,
 void		clear_image(mlx_image_t *img);
 
 // Rendering
-void			render_loop(void *param);
+void		render_loop(void *param);
 void		raycast(t_game *game, t_render_data *data);
+
 // Parsing
 t_data		*parse_args(int ac, char **av);
 t_data		*parse_file(char *file);
@@ -179,8 +182,6 @@ void		parse_color(char *line, t_data *data, t_option, int *count);
 void		parse_map_line(t_data *data, int *count);
 bool		wall_outline(t_data *data);
 bool		empty_space(t_data *data);
-
-// Parsing utils
 bool		is_orientation(char *line);
 t_option	get_option(char *line);
 bool		acceptable_char(char c);
@@ -200,24 +201,29 @@ void		init_time(t_render_data *render_data);
 void		my_keyhook(mlx_key_data_t keydata, void *param);
 void		my_closehook(void *param);
 void 		update_keys(t_game *game, t_render_data *data, double move_speed, double rot_speed);
+
 // Textures
+tex			**load_textures(t_game *game, t_data *data);
 
 // Utils
-void		error(char *s, t_data *data, void *p1, void *p2);
-void		cleanup(t_data *data);
 size_t		tab_line_nb(char **tab);
 void		print_tab(char **tab); //debug
 int			get_map_height(char **map);
 int			get_map_width(char **map);
 
-//close window and cleanup
+// Clean-up
+void		error(char *s, t_data *data, void *p1, void *p2);
+void		delete_texture_tab(tex **textures);
+void		cleanup(t_data *data);
+
+// Close window and cleanup
 void		my_mlx_close(void *param);
 
 // Get Next Line
-char	*get_next_line(int fd);
-size_t	ft_strlen2(const char *s);
-size_t	ft_strlcpy2(char *dst, const char *src, size_t size);
-void	*free_mem(char **remainder, char **buffer);
-char	*ft_strjoin_gnl(char *s1, char *s2);
+char		*get_next_line(int fd);
+size_t		ft_strlen2(const char *s);
+size_t		ft_strlcpy2(char *dst, const char *src, size_t size);
+void		*free_mem(char **remainder, char **buffer);
+char		*ft_strjoin_gnl(char *s1, char *s2);
 
 #endif

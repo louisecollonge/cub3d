@@ -1,7 +1,7 @@
-NO textures/forbidden.xpm
-SO textures/wall_south.xpm
-WE textures/wall_west.xpm
-EA textures/wall_east.xpm
+NO textures/forbidden.png
+SO textures/wall_south.png
+WE textures/wall_west.png
+EA textures/wall_east.png
 
 F 20,20,20
 C 200,200,200

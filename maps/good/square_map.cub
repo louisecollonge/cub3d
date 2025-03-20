@@ -1,13 +1,13 @@
-   WE                            textures/wall_west.xpm 
-NO      textures/wall_north.xpm
+   WE                            textures/wall_west.png 
+NO      textures/wall_north.png
 
 
 
-SO textures/wall_south.xpm
+SO textures/wall_south.png
 
 F   69, 222, 199
 
-EA textures/wall_east.xpm
+EA textures/wall_east.png
 
 
 
