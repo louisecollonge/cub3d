@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+         #
+#    By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/10 12:17:39 by lcollong          #+#    #+#              #
-#    Updated: 2025/03/20 16:04:47 by amonfret         ###   ########.fr        #
+#    Updated: 2025/03/20 17:20:54 by lcollong         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRC = 	$(SRC_DIR)/main.c \
 		$(SRC_DIR)/$(PARSING_DIR)/colors_floor_ceiling.c \
 		$(SRC_DIR)/$(PARSING_DIR)/map.c \
 		$(SRC_DIR)/$(PARSING_DIR)/walls.c \
+		$(SRC_DIR)/$(PARSING_DIR)/walls_utils.c \
 		$(SRC_DIR)/$(PARSING_DIR)/utils.c \
 		$(SRC_DIR)/$(RENDER_DIR)/render.c \
 		$(SRC_DIR)/$(RENDER_DIR)/drawing.c \
