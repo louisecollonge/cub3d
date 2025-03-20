@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:23:19 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/20 14:08:24 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/20 16:06:35 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,7 +201,12 @@ void		init_time(t_render_data *render_data);
 void		my_keyhook(mlx_key_data_t keydata, void *param);
 void		my_closehook(void *param);
 void 		update_keys(t_game *game, t_render_data *data, double move_speed, double rot_speed);
-
+void		move_forward(t_game *game, t_render_data *data, double move_speed);
+void		move_backward(t_game *game, t_render_data *data, double move_speed);
+void		move_left(t_game *game, t_render_data *data, double move_speed);
+void		move_right(t_game *game, t_render_data *data, double move_speed);
+void		rotate_right(t_game *game, t_render_data *data, double rot_speed);
+void		rotate_left(t_game *game, t_render_data *data, double rot_speed);
 // Textures
 tex			**load_textures(t_game *game, t_data *data);
 

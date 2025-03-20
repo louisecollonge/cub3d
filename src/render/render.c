@@ -6,7 +6,7 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:15:22 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/19 21:37:37 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/20 15:56:59 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	render_loop(void *param)
 	data->render_data->frame_time = data->render_data->current_time - data->render_data->old_time;
 	data->render_data->old_time = data->render_data->current_time;
 
-	data->render_data->move_speed = data->render_data->frame_time * 5.0;
+	data->render_data->move_speed = data->render_data->frame_time * 2.5;
 	data->render_data->rot_speed = data->render_data->frame_time * 3.0;
 
 	update_keys(data->game, data->render_data, data->render_data->move_speed, data->render_data->rot_speed);
