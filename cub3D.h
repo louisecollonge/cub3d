@@ -6,7 +6,7 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:23:19 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/21 17:38:47 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/21 18:05:29 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,7 +201,7 @@ void		render_loop(void *param);
 void		raycast(t_game *game, t_render_data *data);
 
 // DRAWING
-void		my_mlx_pixel_put(mlx_image_t *img, int x, int y, uint32_t color);
+void		my_mlx_pixel_put(mlx_image_t *img, int x, int y, int color);
 void		my_mlx_pixel_put_texture (mlx_image_t *img, int x, int y, uint32_t color);
 void		draw_line(mlx_image_t *img, t_coord coord, uint32_t color);
 void		draw_line_loop_helper(t_line_vars *l_vars, t_coord *coord);
