@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:33:16 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/20 14:17:36 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/21 19:53:15 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	free_tab(char **tab)
 	free(tab);
 }
 
-void	delete_texture_tab(tex **textures)
+void	delete_texture_tab(TEX **textures)
 {
 	int	i;
 

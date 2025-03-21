@@ -6,7 +6,7 @@
 #    By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/10 12:17:39 by lcollong          #+#    #+#              #
-#    Updated: 2025/03/21 17:32:40 by amonfret         ###   ########.fr        #
+#    Updated: 2025/03/21 19:23:24 by amonfret         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,11 +42,14 @@ SRC = 	$(SRC_DIR)/main.c \
 		$(SRC_DIR)/$(PARSING_DIR)/utils.c \
 		$(SRC_DIR)/$(RENDER_DIR)/render.c \
 		$(SRC_DIR)/$(RENDER_DIR)/drawing.c \
+		$(SRC_DIR)/$(RENDER_DIR)/drawing_utils.c \
 		$(SRC_DIR)/$(RENDER_DIR)/vertical_line.c \
 		$(SRC_DIR)/$(RENDER_DIR)/init_render_data.c \
 		$(SRC_DIR)/$(RENDER_DIR)/init_render_data_utils.c \
 		$(SRC_DIR)/$(RENDER_DIR)/floor_ceiling.c \
 		$(SRC_DIR)/$(RENDER_DIR)/raycast.c \
+		$(SRC_DIR)/$(RENDER_DIR)/raycast_utils.c \
+		$(SRC_DIR)/$(RENDER_DIR)/dda.c \
 		$(SRC_DIR)/$(INPUT_DIR)/handle_input.c \
 		$(SRC_DIR)/$(INPUT_DIR)/movement_input.c \
 		$(SRC_DIR)/$(INPUT_DIR)/rotation_input.c \

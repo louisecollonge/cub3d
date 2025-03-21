@@ -1,49 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   floor_ceiling.c                                    :+:      :+:    :+:   */
+/*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/21 17:43:31 by amonfret          #+#    #+#             */
-/*   Updated: 2025/03/21 19:15:15 by amonfret         ###   ########.fr       */
+/*   Created: 2025/03/21 19:22:53 by amonfret          #+#    #+#             */
+/*   Updated: 2025/03/21 19:36:11 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D.h"
 
-void	draw_ceiling(mlx_image_t *img, int color)
+void	dda(t_game *game, t_render_data *data)
 {
-	unsigned int	x;
-	unsigned int	y;
-
-	y = 0;
-	while (y < img->height / 2)
+	while (data->hit == 0)
 	{
-		x = 0;
-		while (x < img->width)
+		if (data->side_dist_x < data->side_dist_y)
 		{
-			my_mlx_pixel_put(img, x, y, color);
-			x++;
+			data->side_dist_x += data->delta_dist_x;
+			data->map_x += data->step_x;
+			data->side = 0;
 		}
-		y++;
-	}
-}
-
-void	draw_floor(mlx_image_t *img, int color)
-{
-	unsigned int	x;
-	unsigned int	y;
-
-	y = img->height / 2;
-	while (y < img->height)
-	{
-		x = 0;
-		while (x < img->width)
+		else
 		{
-			my_mlx_pixel_put(img, x, y, color);
-			x++;
+			data->side_dist_y += data->delta_dist_y;
+			data->map_y += data->step_y;
+			data->side = 1;
 		}
-		y++;
+		if (game->map[data->map_y][data->map_x] == '1')
+		{
+			data->hit = 1;
+			set_wall_direction(data);
+		}
 	}
 }

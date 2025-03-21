@@ -6,28 +6,11 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 22:04:34 by amonfret          #+#    #+#             */
-/*   Updated: 2025/03/21 18:12:06 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/21 19:07:34 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D.h"
-
-static void	set_line_vars(t_line_vars *l_vars, t_coord coord)
-{
-	l_vars->dx = abs(coord.x1 - coord.x0);
-	l_vars->dy = abs(coord.y1 - coord.y0);
-	if (coord.x0 < coord.x1)
-		l_vars->sx = 1;
-	else
-		l_vars->sx = -1;
-	if (coord.y0 < coord.y1)
-		l_vars->sy = 1;
-	else
-		l_vars->sy = -1;
-	l_vars->err = l_vars->dx - l_vars->dy;
-	l_vars->x_start = coord.x0;
-	l_vars->y_start = coord.y0;
-}
 
 void	my_mlx_pixel_put(mlx_image_t *img, int x, int y, int color)
 {
@@ -41,7 +24,7 @@ void	my_mlx_pixel_put(mlx_image_t *img, int x, int y, int color)
 	pixel[2] = (color >> 0) & 0xFF;
 }
 
-void	my_mlx_pixel_put_texture (mlx_image_t *img, int x, int y, uint32_t color)
+void	my_mlx_pixel_put_texture(mlx_image_t *img, int x, int y, uint32_t color)
 {
 	uint8_t	*pixel;
 
@@ -67,21 +50,6 @@ void	draw_line(mlx_image_t *img, t_coord coord, uint32_t color)
 		if (coord.x0 == coord.x1 && coord.y0 == coord.y1)
 			break ;
 		draw_line_loop_helper(&l_vars, &coord);
-	}
-}
-
-void	draw_line_loop_helper(t_line_vars *l_vars, t_coord *coord)
-{
-	l_vars->err2 = 2 * l_vars->err;
-	if (l_vars->err2 > -l_vars->dy)
-	{
-		l_vars->err -= l_vars->dy;
-		coord->x0 += l_vars->sx;
-	}
-	if (l_vars->err2 < l_vars->dx)
-	{
-		l_vars->err += l_vars->dx;
-		coord->y0 += l_vars->sy;
 	}
 }
 
