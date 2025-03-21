@@ -6,7 +6,7 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 22:04:34 by amonfret          #+#    #+#             */
-/*   Updated: 2025/03/20 18:59:17 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/21 18:12:06 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,19 @@ static void	set_line_vars(t_line_vars *l_vars, t_coord coord)
 	l_vars->y_start = coord.y0;
 }
 
-void	my_mlx_pixel_put(mlx_image_t *img, int x, int y, uint32_t color)
+void	my_mlx_pixel_put(mlx_image_t *img, int x, int y, int color)
+{
+	uint8_t	*pixel;
+
+	if (x < 0 || x >= (int)img->width || y < 0 || y >= (int)img->height)
+		return ;
+	pixel = &img->pixels[(y * img->width + x) * 4];
+	pixel[0] = (color >> 16) & 0xFF;
+	pixel[1] = (color >> 8) & 0xFF;
+	pixel[2] = (color >> 0) & 0xFF;
+}
+
+void	my_mlx_pixel_put_texture (mlx_image_t *img, int x, int y, uint32_t color)
 {
 	uint8_t	*pixel;
 

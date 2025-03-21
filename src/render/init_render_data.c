@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_render_data.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 13:25:07 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/20 13:25:09 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/21 17:40:55 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,7 @@
 void init_render_data(t_game *game, t_render_data *render_data)
 {
 	set_starting_position(game, render_data);
-	printf("starting x: %f\nstarting y: %f\n", render_data->pos_x, render_data->pos_y);
 	set_starting_direction(game, render_data);
-	printf("starting dir_x: %f\nstarting dir_y: %f\n", render_data->dir_x, render_data->dir_y);
 	set_camera_plane(render_data);
-	printf("starting plane_x: %f\nstarting plane_y: %f\n", render_data->plane_x, render_data->plane_y);
 	init_time(render_data);
-	printf("starting time: %f\nstarting old_time: %f\n", render_data->time, render_data->old_time);
 }
