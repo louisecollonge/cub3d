@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:15:42 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/20 14:08:42 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/21 17:41:19 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	my_mlx_close(void *param)
 {
-	//!
-	printf("my_mlx_close()\n");
 	t_game	*game;
 
 	game = (t_game *)param;
@@ -30,9 +28,6 @@ void	my_mlx_close(void *param)
 void	my_keyhook(mlx_key_data_t keydata, void *param)
 {
 	t_game	*game;
-	// //!
-	// printf("keydata.os_key = %d\n", keydata.os_key);
-	// printf("keydata.key = %d\n", keydata.key);
 	game = (t_game *)param;
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 		my_mlx_close(game);
@@ -40,8 +35,6 @@ void	my_keyhook(mlx_key_data_t keydata, void *param)
 
 void	my_closehook(void *param)
 {
-	//!
-	printf("Close hook\n");
 	t_game	*game;
 
 	game = (t_game *)param;

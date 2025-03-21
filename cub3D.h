@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:23:19 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/21 16:14:01 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/21 17:38:47 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,11 +202,14 @@ void		raycast(t_game *game, t_render_data *data);
 
 // DRAWING
 void		my_mlx_pixel_put(mlx_image_t *img, int x, int y, uint32_t color);
+void		my_mlx_pixel_put_texture (mlx_image_t *img, int x, int y, uint32_t color);
 void		draw_line(mlx_image_t *img, t_coord coord, uint32_t color);
 void		draw_line_loop_helper(t_line_vars *l_vars, t_coord *coord);
 void		vertical_line(mlx_image_t *img, int x,
 				t_vertical vert, uint32_t color);
-void	draw_texture_stripe(mlx_image_t *img, int x, t_game *game, t_render_data *data);
+void		draw_texture_stripe(mlx_image_t *img, int x, t_game *game, t_render_data *data);
+void		draw_ceiling(mlx_image_t *img, int color);
+void		draw_floor(mlx_image_t *img, int color);
 void		clear_image(mlx_image_t *img);
 
 // GAME INITIATION
@@ -251,7 +254,7 @@ void		*free_mem(char **remainder, char **buffer);
 char		*ft_strjoin_gnl(char *s1, char *s2);
 
 //!debug, to delete
-void		print_data(t_render_data *data); 
+void		print_data(t_render_data *data);
 // void		print_tab(char **tab); //debug
 
 #endif

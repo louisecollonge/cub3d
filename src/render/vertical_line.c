@@ -6,7 +6,7 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:03:25 by amonfret          #+#    #+#             */
-/*   Updated: 2025/03/20 18:49:06 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/21 17:20:29 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	stripe_loop(mlx_image_t *img, int x,t_render_data *data, tex *textur
 		data->tex_y = (int)data->tex_pos & (texture->height - 1);
 		data->tex_pos += data->step;
 		data->color = *((uint32_t *)(texture->pixels + (data->tex_y * texture->width + data->tex_x) * 4));
-		my_mlx_pixel_put(img, x, y, data->color);
+		my_mlx_pixel_put_texture(img, x, y, data->color);
 		y++;
 	}
 }
