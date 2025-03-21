@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:23:19 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/20 17:38:06 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/21 16:14:01 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 
 # define BUFFER_SIZE 1 //gnl
 # define tex mlx_texture_t //for lisibility
+# define COLLISION_RADIUS 0.1
 
 typedef enum	s_option
 {
@@ -65,19 +66,10 @@ typedef struct s_data
 	int		in_map;
 }	t_data;
 
-//! to delete if not used
-// typedef struct s_player
-// {
-// 	float	x; //float pour la precision apres la virgule
-// 	float	y;
-// 	float	dir;
-// }	t_player;
-
 typedef struct s_game
 {
 	mlx_t			*mlx; //pointeur instance MLX42
 	mlx_image_t		*img; //image affichee par render
-	// t_player		player;
 	tex				**textures; // tableau de textures
 	char			**map; //carte du jeu en 2D
 	t_data			*data; //pointer to data for cleanup
@@ -120,38 +112,60 @@ typedef enum e_wall_direction
 	NORTH
 } t_direction;
 
+typedef struct s_texture_data
+{
+	double	wall_x; //where on x the wall was hit by the ray;
+	int		texture_index;
+	int		tex_width;
+	int		tex_height;
+	int		tex_x; // x coordinate on the texture;
+	int		tex_y;
+	double	step; // increment of tex coord per screen pixel
+	double	tex_pos; //starting texture coordinate
+
+}	t_texture_data;
+
 typedef struct s_render_data
 {
-	double		pos_x; //x and y starting position
-	double		pos_y;
-	double		dir_x;// direction vector of player
-	double		dir_y;
-	double		plane_x; //perpendicular camera plane vector
-	double		plane_y;
-	double		camera_x; // x in camera space
-	double		ray_direction_x;
-	double		ray_direction_y;
-	int			map_x;
-	int			map_y;
-	double		side_dist_x;
-	double		side_dist_y;
-	double		delta_dist_x; //distance the ray must travel along the X-axis to reach the next vertical grid line.
-	double		delta_dist_y; //distance the ray must travel along the Y-axis to reach the next horizontal grid line.
-	double		perp_wall_dist;
-	double		step_x;
-	double		step_y;
-	int			hit;
-	int			side;
-	int			draw_start;
-	int			draw_end;
-	uint32_t	color;
-	double		time;
-	double		old_time;
-	double		current_time;
-	double		frame_time;
-	double		move_speed;
-	double		rot_speed;
-	t_direction wall_dir;
+	double			pos_x; //x and y starting position
+	double			pos_y;
+	double			dir_x;// direction vector of player
+	double			dir_y;
+	double			plane_x; //perpendicular camera plane vector
+	double			plane_y;
+	double			camera_x; // x in camera space
+	double			ray_direction_x;
+	double			ray_direction_y;
+	double			ray_length;
+	int				map_x;
+	int				map_y;
+	double			side_dist_x;
+	double			side_dist_y;
+	double			delta_dist_x; //distance the ray must travel along the X-axis to reach the next vertical grid line.
+	double			delta_dist_y; //distance the ray must travel along the Y-axis to reach the next horizontal grid line.
+	double			perp_wall_dist;
+	double			step_x;
+	double			step_y;
+	int				hit;
+	int				side;
+	int				draw_start;
+	int				draw_end;
+	uint32_t		color;
+	double			time;
+	double			old_time;
+	double			current_time;
+	double			frame_time;
+	double			move_speed;
+	double			rot_speed;
+	t_direction		wall_dir;
+	double	wall_x; //where on x the wall was hit by the ray;
+	int		texture_index;
+	int		tex_width;
+	int		tex_height;
+	int		tex_x; // x coordinate on the texture;
+	int		tex_y;
+	double	step; // increment of tex coord per screen pixel
+	double	tex_pos; //starting texture coordinate
 }	t_render_data;
 
 typedef struct s_ray_data
@@ -160,7 +174,11 @@ typedef struct s_ray_data
 	t_render_data	*render_data;
 } t_ray_data;
 
-
+typedef struct s_tripe_data
+{
+	t_render_data	*render_data;
+	t_texture_data	*tex_data;
+}	t_stripe_data;
 
 // PARSING
 t_data		*parse_args(int ac, char **av);
@@ -188,6 +206,7 @@ void		draw_line(mlx_image_t *img, t_coord coord, uint32_t color);
 void		draw_line_loop_helper(t_line_vars *l_vars, t_coord *coord);
 void		vertical_line(mlx_image_t *img, int x,
 				t_vertical vert, uint32_t color);
+void	draw_texture_stripe(mlx_image_t *img, int x, t_game *game, t_render_data *data);
 void		clear_image(mlx_image_t *img);
 
 // GAME INITIATION
@@ -208,6 +227,7 @@ void		move_left(t_game *game, t_render_data *data, double move_speed);
 void		move_right(t_game *game, t_render_data *data, double move_speed);
 void		rotate_right(t_game *game, t_render_data *data, double rot_speed);
 void		rotate_left(t_game *game, t_render_data *data, double rot_speed);
+void		push_player(t_game *game, t_render_data *data);
 
 // TEXTURES
 tex			**load_textures(t_game *game, t_data *data);

@@ -6,7 +6,7 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 22:04:34 by amonfret          #+#    #+#             */
-/*   Updated: 2025/03/18 17:42:51 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/20 18:59:17 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ void	my_mlx_pixel_put(mlx_image_t *img, int x, int y, uint32_t color)
 	if (x < 0 || x >= (int)img->width || y < 0 || y >= (int)img->height)
 		return ;
 	pixel = &img->pixels[(y * img->width + x) * 4];
-	pixel[0] = (color >> 24) & 0xFF;
-	pixel[1] = (color >> 16) & 0xFF;
-	pixel[2] = (color >> 8) & 0xFF;
-	pixel[3] = color & 0xFF;
+	pixel[0] = (color >> 0) & 0xFF;
+	pixel[1] = (color >> 8) & 0xFF;
+	pixel[2] = (color >> 16) & 0xFF;
+	pixel[3] = (color >> 24) & 0xFF;
 }
 
 void	draw_line(mlx_image_t *img, t_coord coord, uint32_t color)
