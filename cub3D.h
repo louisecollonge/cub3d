@@ -6,7 +6,7 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:23:19 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/20 19:53:18 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/21 16:14:01 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 
 # define BUFFER_SIZE 1 //gnl
 # define tex mlx_texture_t //for lisibility
-# define COLLISION_RADIUS 0.2
+# define COLLISION_RADIUS 0.1
 
 typedef enum	s_option
 {

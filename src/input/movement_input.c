@@ -85,15 +85,24 @@ void move_right(t_game *game, t_render_data *data, double move_speed)
 
 void	push_player(t_game *game, t_render_data *data)
 {
-	if (game->map[(int)(data->pos_y)][(int)(data->pos_x)] == '1')
+	if (game->map[(int)(data->pos_y)][(int)(data->pos_x + COLLISION_RADIUS)] == '1')
 	{
-		if (game->map[(int)(data->pos_y)][(int)(data->pos_x - COLLISION_RADIUS)] != '1')
+		 if (game->map[(int)(data->pos_y)][(int)(data->pos_x - COLLISION_RADIUS)] != '1')
 			data->pos_x -= COLLISION_RADIUS;
-		else if (game->map[(int)(data->pos_y)][(int)(data->pos_x + COLLISION_RADIUS)] != '1')
+	}
+	if (game->map[(int)(data->pos_y)][(int)(data->pos_x - COLLISION_RADIUS)] == '1')
+	{
+		 if (game->map[(int)(data->pos_y)][(int)(data->pos_x + COLLISION_RADIUS)] != '1')
 			data->pos_x += COLLISION_RADIUS;
-		if (game->map[(int)(data->pos_y - COLLISION_RADIUS)][(int)(data->pos_x)] != '1')
-			data->pos_y -= COLLISION_RADIUS;
-		else if (game->map[(int)(data->pos_y + COLLISION_RADIUS)][(int)(data->pos_x)] != '1')
-			data->pos_y += COLLISION_RADIUS;
+	}
+	if (game->map[(int)(data->pos_y - COLLISION_RADIUS)][(int)(data->pos_x)] == '1')
+	{
+			if (game->map[(int)(data->pos_y + COLLISION_RADIUS)][(int)(data->pos_x)] != '1')
+				data->pos_y += COLLISION_RADIUS;
+	}
+	if (game->map[(int)(data->pos_y + COLLISION_RADIUS)][(int)(data->pos_x)] == '1')
+	{
+			if (game->map[(int)(data->pos_y - COLLISION_RADIUS)][(int)(data->pos_x)] != '1')
+				data->pos_y -= COLLISION_RADIUS;
 	}
 }

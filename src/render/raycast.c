@@ -6,7 +6,7 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:08:37 by amonfret          #+#    #+#             */
-/*   Updated: 2025/03/20 19:17:56 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/21 16:14:11 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,8 @@ void	set_perp_wall_dist(t_render_data *data)
 		data->perp_wall_dist = (data->side_dist_x - data->delta_dist_x);
 	else
 		data->perp_wall_dist = (data->side_dist_y - data->delta_dist_y);
-	if (data->perp_wall_dist < 0.2)
-		data->perp_wall_dist = 0.2;
+	if (data->perp_wall_dist < 0.1)
+		data->perp_wall_dist = 0.1;
 }
 
 void	set_line_height(t_game *game, t_render_data *data)
