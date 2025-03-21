@@ -6,13 +6,13 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 19:04:04 by amonfret          #+#    #+#             */
-/*   Updated: 2025/03/20 18:51:50 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/21 19:17:30 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D.h"
 
-void set_starting_position(t_game *game, t_render_data *render_data)
+void	set_starting_position(t_game *game, t_render_data *render_data)
 {
 	int	width;
 	int	height;
@@ -32,7 +32,7 @@ void set_starting_position(t_game *game, t_render_data *render_data)
 			{
 				render_data->pos_x = x + 0.5;
 				render_data->pos_y = y + 0.5;
-				return;
+				return ;
 			}
 			x++;
 		}
@@ -71,8 +71,6 @@ void	set_starting_direction(t_game *game, t_render_data *render_data)
 
 void	set_camera_plane(t_render_data *render_data)
 {
-	// render_data->plane_x = render_data->dir_y;
-	// render_data->plane_y = -render_data->dir_x;
 	double		fov_rad;
 	double		plane_length;
 	double		fov_deg;

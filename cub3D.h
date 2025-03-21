@@ -6,15 +6,15 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:23:19 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/21 18:05:29 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/21 19:46:17 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
-#define CUB3D_H
+# define CUB3D_H
 
 # include "libft/libft.h"
-# include "MLX42/include/MLX42/MLX42.h" //sur conseil de Baptiste : MLX42 et non minilibX
+# include "MLX42/include/MLX42/MLX42.h"
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdio.h>
@@ -35,10 +35,10 @@
 # define RESET "\033[0m"
 
 # define BUFFER_SIZE 1 //gnl
-# define tex mlx_texture_t //for lisibility
-# define COLLISION_RADIUS 0.1
+# define TEX mlx_texture_t //for lisibility
+# define COLL_RAD 0.1
 
-typedef enum	s_option
+typedef enum s_option
 {
 	FLOOR,
 	CEILING,
@@ -46,7 +46,7 @@ typedef enum	s_option
 	SO,
 	WE,
 	EA,
-} t_option;
+}	t_option;
 
 typedef struct s_data
 {
@@ -70,7 +70,7 @@ typedef struct s_game
 {
 	mlx_t			*mlx; //pointeur instance MLX42
 	mlx_image_t		*img; //image affichee par render
-	tex				**textures; // tableau de textures
+	TEX				**textures; // tableau de textures
 	char			**map; //carte du jeu en 2D
 	t_data			*data; //pointer to data for cleanup
 }	t_game;
@@ -110,7 +110,7 @@ typedef enum e_wall_direction
 	WEST,
 	SOUTH,
 	NORTH
-} t_direction;
+}	t_direction;
 
 typedef struct s_texture_data
 {
@@ -120,9 +120,8 @@ typedef struct s_texture_data
 	int		tex_height;
 	int		tex_x; // x coordinate on the texture;
 	int		tex_y;
-	double	step; // increment of tex coord per screen pixel
+	double	step; // increment of TEX coord per screen pixel
 	double	tex_pos; //starting texture coordinate
-
 }	t_texture_data;
 
 typedef struct s_render_data
@@ -141,8 +140,8 @@ typedef struct s_render_data
 	int				map_y;
 	double			side_dist_x;
 	double			side_dist_y;
-	double			delta_dist_x; //distance the ray must travel along the X-axis to reach the next vertical grid line.
-	double			delta_dist_y; //distance the ray must travel along the Y-axis to reach the next horizontal grid line.
+	double			delta_dist_x;
+	double			delta_dist_y;
 	double			perp_wall_dist;
 	double			step_x;
 	double			step_y;
@@ -158,21 +157,21 @@ typedef struct s_render_data
 	double			move_speed;
 	double			rot_speed;
 	t_direction		wall_dir;
-	double	wall_x; //where on x the wall was hit by the ray;
-	int		texture_index;
-	int		tex_width;
-	int		tex_height;
-	int		tex_x; // x coordinate on the texture;
-	int		tex_y;
-	double	step; // increment of tex coord per screen pixel
-	double	tex_pos; //starting texture coordinate
+	double			wall_x; //where on x the wall was hit by the ray;
+	int				texture_index;
+	int				tex_width;
+	int				tex_height;
+	int				tex_x; // x coordinate on the texture;
+	int				tex_y;
+	double			step; // increment of tex coord per screen pixel
+	double			tex_pos; //starting texture coordinate
 }	t_render_data;
 
 typedef struct s_ray_data
 {
 	t_game			*game;
 	t_render_data	*render_data;
-} t_ray_data;
+}	t_ray_data;
 
 typedef struct s_tripe_data
 {
@@ -183,8 +182,9 @@ typedef struct s_tripe_data
 // PARSING
 t_data		*parse_args(int ac, char **av);
 t_data		*parse_file(char *file);
-void		parse_texture(char *line, t_data *data, t_option option, int *count);
-void		parse_color(char *line, t_data *data, t_option, int *count);
+void		parse_texture(char *line, t_data *data,
+				t_option option, int *count);
+void		parse_color(char *line, t_data *data, t_option option, int *count);
 void		parse_map_line(t_data *data, int *count);
 		// walls
 bool		wall_outline(t_data *data);
@@ -200,17 +200,31 @@ bool		acceptable_char(char c);
 void		render_loop(void *param);
 void		raycast(t_game *game, t_render_data *data);
 
+// RAYCAST UTILS
+void		calc_ray_direction(t_game *game, t_render_data *data, int x);
+void		set_map_cell(t_render_data *data);
+void		set_delta_dist( t_render_data *data);
+void		calculate_step(t_render_data *data);
+void		set_wall_direction(t_render_data *data);
+void		dda(t_game *game, t_render_data *data);
+
 // DRAWING
 void		my_mlx_pixel_put(mlx_image_t *img, int x, int y, int color);
-void		my_mlx_pixel_put_texture (mlx_image_t *img, int x, int y, uint32_t color);
+void		my_mlx_pixel_put_texture(mlx_image_t *img,
+				int x, int y, uint32_t color);
 void		draw_line(mlx_image_t *img, t_coord coord, uint32_t color);
 void		draw_line_loop_helper(t_line_vars *l_vars, t_coord *coord);
 void		vertical_line(mlx_image_t *img, int x,
 				t_vertical vert, uint32_t color);
-void		draw_texture_stripe(mlx_image_t *img, int x, t_game *game, t_render_data *data);
+void		draw_texture_stripe(mlx_image_t *img,
+				int x, t_game *game, t_render_data *data);
 void		draw_ceiling(mlx_image_t *img, int color);
 void		draw_floor(mlx_image_t *img, int color);
 void		clear_image(mlx_image_t *img);
+
+// DRAWING UTILS
+void		set_line_vars(t_line_vars *l_vars, t_coord coord);
+void		draw_line_loop_helper(t_line_vars *l_vars, t_coord *coord);
 
 // GAME INITIATION
 void		init_game(t_game *game, t_data *data);
@@ -223,7 +237,8 @@ void		init_time(t_render_data *render_data);
 // INPUT
 void		my_keyhook(mlx_key_data_t keydata, void *param);
 void		my_closehook(void *param);
-void 		update_keys(t_game *game, t_render_data *data, double move_speed, double rot_speed);
+void		update_keys(t_game *game, t_render_data *data,
+				double move_speed, double rot_speed);
 void		move_forward(t_game *game, t_render_data *data, double move_speed);
 void		move_backward(t_game *game, t_render_data *data, double move_speed);
 void		move_left(t_game *game, t_render_data *data, double move_speed);
@@ -233,12 +248,12 @@ void		rotate_left(t_game *game, t_render_data *data, double rot_speed);
 void		push_player(t_game *game, t_render_data *data);
 
 // TEXTURES
-tex			**load_textures(t_game *game, t_data *data);
+TEX			**load_textures(t_game *game, t_data *data);
 
 // CLOSE & CLEAN
 void		my_mlx_close(void *param);
 void		error(char *s, t_data *data, void *p1, void *p2);
-void		delete_texture_tab(tex **textures);
+void		delete_texture_tab(TEX **textures);
 void		cleanup(t_data *data);
 
 // UTILS

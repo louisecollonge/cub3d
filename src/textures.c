@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:15:33 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/20 17:32:38 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/21 19:53:00 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ static void	texture_error(char *str, t_data *data, t_game *game)
 	error(str, data, NULL, NULL);
 }
 
-tex	**load_textures(t_game *game, t_data *data)
+TEX	**load_textures(t_game *game, t_data *data)
 {
-	tex	**tab;
+	TEX	**tab;
 
-	tab = malloc(sizeof(tex *) * 4);
+	tab = malloc(sizeof(TEX *) * 4);
 	if (!tab)
 		texture_error("Malloc failure", data, game);
 	tab[0] = mlx_load_png(data->no);
