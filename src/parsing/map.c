@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:33:26 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/20 17:13:47 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/21 17:20:02 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	parse_map_line(t_data *data, int *count)
 			|| data->line[i] == 'W' || data->line[i] == 'E')
 			data->character_nb++;
 		if (data->character_nb > 1)
-			error("Too many characters in map", data, NULL, NULL);
+			error("Too many players in map", data, NULL, NULL);
 		i++;
 	}
 	realloc_line(data, data->line);
