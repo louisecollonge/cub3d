@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:15:51 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/20 13:41:38 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/20 17:32:05 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,26 +30,27 @@ size_t	tab_line_nb(char **tab)
 	return (i);
 }
 
-char	*ft_strncpy(char *dest, char *src, unsigned int n)
-{
-	unsigned int	i;
-	unsigned int	c;
+//! est-ce que cette fonction est necessaire ?
+// char	*ft_strncpy(char *dest, char *src, unsigned int n)
+// {
+// 	unsigned int	i;
+// 	unsigned int	c;
 
-	c = n;
-	i = 0;
-	while (src[i] && n >= 1)
-	{
-		dest[i] = src[i];
-		i++;
-		n--;
-	}
-	while (i < c)
-	{
-		dest[i] = '\0';
-		i++;
-	}
-	return (dest);
-}
+// 	c = n;
+// 	i = 0;
+// 	while (src[i] && n >= 1)
+// 	{
+// 		dest[i] = src[i];
+// 		i++;
+// 		n--;
+// 	}
+// 	while (i < c)
+// 	{
+// 		dest[i] = '\0';
+// 		i++;
+// 	}
+// 	return (dest);
+// }
 
 int get_map_height(char **map)
 {

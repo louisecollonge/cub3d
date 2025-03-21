@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:24:20 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/20 16:21:57 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/20 17:16:13 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ t_data	*parse_args(int ac, char **av)
 
 	if (ac != 2)
 		error("Wrong argument: retry with: ./cub3D map.cub", NULL, NULL, NULL);
-	file_len = ft_strlen(av[1]); //map file path name
-	extension_len = 4; //.cub
+	file_len = ft_strlen(av[1]);
+	extension_len = 4;
 	if (file_len - extension_len <= 0
 		|| ft_strncmp(av[1] + (file_len - extension_len), ".cub", 5))
 		error("Wrong extension: must be .cub", NULL, NULL, NULL);
@@ -42,7 +42,7 @@ static void	process_line(t_data *data, int *count)
 			data->in_map = 2;
 	}
 	else if (is_orientation(data->line + i))
-		parse_texture(data->line + i + 3, data, get_option(data->line + i), count);
+		parse_texture(data->line + i + 3, data, get_opt(data->line + i), count);
 	else if (ft_strncmp(data->line + i, "F ", 2) == 0)
 		parse_color(data->line + i + 2, data, FLOOR, count);
 	else if (ft_strncmp(data->line + i, "C ", 2) == 0)

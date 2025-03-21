@@ -6,7 +6,7 @@
 /*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 18:20:38 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/19 15:18:53 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/20 17:10:12 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ static bool	first_tab_line(t_data *data, size_t *col)
 	{
 		if (data->map_tab[0][*col] != '1' && data->map_tab[0][*col] != ' '
 			&& data->map_tab[0][*col] != '\t')
-		{
-			// printf("Wrong space at row 0 and col %zu\n", *col); //debug
 			return (false);
-		}
 		(*col)++;
 	}
 	return (true);
@@ -62,10 +59,7 @@ static bool	last_tab_line(t_data *data, size_t *row)
 	{
 		if (data->map_tab[*row][col] != '1' && data->map_tab[*row][col] != ' '
 			&& data->map_tab[*row][col] != '\t')
-		{
-			// printf("Wrong space at row %zu and col %zu\n", *row, col); //debug
 			return (false);
-		}
 		col++;
 	}
 	return (true);
@@ -80,7 +74,6 @@ bool	wall_outline(t_data *data)
 	data->map_tab = ft_split(data->map_string, '\n');
 	if (!data->map_tab)
 		error("Malloc failure", data, NULL, NULL);
-	// print_tab(data->map_tab); //debug
 	if (first_tab_line(data, &col) == false)
 		return (false);
 	row = 1;
