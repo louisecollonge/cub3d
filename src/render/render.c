@@ -6,7 +6,7 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:15:22 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/24 19:28:46 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/24 19:57:21 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	render_loop(void *param)
 	draw_ceiling(data->game->img, data->game->data->ceiling_rgb);
 	draw_floor(data->game->img, data->game->data->floor_rgb);
 	raycast(data->game, data->render_data);
-	draw_minimap(data->minimap->img, data->game, data->render_data, data->minimap);
+	draw_minimap(data->game, data->render_data, data->minimap);
 }
 
 /*

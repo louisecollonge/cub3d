@@ -6,7 +6,7 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 18:20:52 by amonfret          #+#    #+#             */
-/*   Updated: 2025/03/24 19:43:31 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/24 20:47:40 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	init_minimap_data(t_game *game, t_minimap *minimap)
 	minimap->map_height = get_map_height(game->map);
 	minimap->width = 200;
 	minimap->height = 200;
-	minimap->tile_size = (minimap->width / minimap->map_width) * 2;
+	minimap->tile_size = (minimap->width / (double)minimap->map_width) * 2.0;
 	minimap->img = NULL;
 	minimap->tiles_x = minimap->width / minimap->tile_size;
 	minimap->tiles_y = minimap->height / minimap->tile_size;
@@ -38,12 +38,45 @@ static void	update_offset(t_render_data *data, t_minimap *minimap)
 		minimap->offset_y = minimap->map_height - minimap->tiles_y;
 }
 
-void	draw_minimap(mlx_image_t *img, t_game *game, t_render_data *data, t_minimap *minimap)
+void	draw_walls(int x, int y, t_minimap *minimap, t_game *game )
+{
+	int	map_x;
+	int	map_y;
+	double	map_x_f;
+	double	map_y_f;
+
+	map_x_f = minimap->offset_x + ((double)x / minimap->tile_size);
+	map_y_f = minimap->offset_y + ((double)y / minimap->tile_size);
+	map_x = (int)map_x_f;
+	map_y = (int)map_y_f;
+	if (map_x >= 0 && map_x < minimap->map_width && map_y >= 0 && map_y < minimap->map_height)
+	{
+		if (game->map[map_y][map_x] == '1')
+			my_mlx_pixel_put(minimap->img, x ,y , 0xFFFFFF);
+		else
+			my_mlx_pixel_put(minimap->img, x ,y , 0x000000);
+	}
+}
+
+void	draw_player(t_minimap *minimap, t_render_data *data)
+{
+
+	int	player_screen_x;
+	int	player_screen_y;
+	int	x1;
+	int y1;
+
+	player_screen_x = (data->pos_x - minimap->offset_x) * minimap->tile_size;
+	player_screen_y = (data->pos_y - minimap->offset_y) * minimap->tile_size;
+	x1 = player_screen_x + data->dir_x * minimap->tile_size;
+	y1 = player_screen_y + data->dir_y * minimap->tile_size;
+	draw_line(minimap->img, (t_coord){player_screen_x, x1, player_screen_y, y1}, 0xFFFFFFFF);
+}
+
+void	draw_minimap(t_game *game, t_render_data *data, t_minimap *minimap)
 {
 	int	x;
 	int	y;
-	int	map_x;
-	int	map_y;
 
 	update_offset(data, minimap);
 	y = 0;
@@ -52,20 +85,12 @@ void	draw_minimap(mlx_image_t *img, t_game *game, t_render_data *data, t_minimap
 		x = 0;
 		while (x < minimap->width)
 		{
-			map_x = minimap->offset_x + (x / minimap->tile_size);
-			map_y = minimap->offset_y + (y / minimap->tile_size);
-			if (map_x >= 0 && map_x < minimap->map_width && map_y >= 0 && map_y < minimap->map_height)
-			{
-				if (game->map[map_y][map_x] == '1')
-					my_mlx_pixel_put(img, x ,y , 0xFFFFFF);
-				else
-					my_mlx_pixel_put(img, x ,y , 0x000000);
-			}
+			draw_walls(x, y, minimap, game);
 			x++;
 		}
 		y++;
 	}
-
+	draw_player(minimap, data);
 }
 
 // void	minimap_loop(void *param)

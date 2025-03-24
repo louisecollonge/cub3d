@@ -6,7 +6,7 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:23:19 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/24 19:25:46 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/24 19:59:10 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,8 +189,8 @@ typedef struct s_minimap
 	int	width;
 	int	height;
 	int	tile_size;
-	int	tiles_x;
-	int	tiles_y;
+	double	tiles_x;
+	double	tiles_y;
 	double	offset_x;
 	double	offset_y;
 	mlx_image_t	*img;
@@ -287,7 +287,7 @@ char		*ft_strjoin_gnl(char *s1, char *s2);
 
 // MINIMAP
 void	init_minimap_data(t_game *game, t_minimap *minimap);
-void	draw_minimap(mlx_image_t *img, t_game *game, t_render_data *data, t_minimap *minimap);
+void	draw_minimap(t_game *game, t_render_data *data, t_minimap *minimap);
 // void	minimap_loop(void *param);
 
 //!debug, to delete
