@@ -6,7 +6,7 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 18:35:22 by amonfret          #+#    #+#             */
-/*   Updated: 2025/03/21 18:42:09 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/24 16:13:42 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	move_left(t_game *game, t_render_data *data, double move_speed)
 	if (mlx_is_key_down(game->mlx, MLX_KEY_A))
 	{
 		if (game->map[(int)(data->pos_y)][(int)(new_x + COLL_RAD)] != '1' &&
-			game->map[(int)(data->pos_y)][(int)(new_x - COLL_RAD)])
+			game->map[(int)(data->pos_y)][(int)(new_x - COLL_RAD)] != '1')
 			data->pos_x = new_x;
 		if (game->map[(int)(new_y + COLL_RAD)][(int)(data->pos_x)] != '1' &&
 			game->map[(int)(new_y - COLL_RAD)][(int)(data->pos_x)] != '1')
