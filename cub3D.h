@@ -6,7 +6,7 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:23:19 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/21 19:46:17 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/24 21:28:53 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ typedef struct s_data
 	int		in_map;
 }	t_data;
 
+typedef struct s_minimap	t_minimap;
+
 typedef struct s_game
 {
 	mlx_t			*mlx; //pointeur instance MLX42
@@ -73,6 +75,7 @@ typedef struct s_game
 	TEX				**textures; // tableau de textures
 	char			**map; //carte du jeu en 2D
 	t_data			*data; //pointer to data for cleanup
+	t_minimap		*minimap;
 }	t_game;
 
 //struct for bresenhams algo
@@ -171,6 +174,7 @@ typedef struct s_ray_data
 {
 	t_game			*game;
 	t_render_data	*render_data;
+	t_minimap		*minimap;
 }	t_ray_data;
 
 typedef struct s_tripe_data
@@ -178,6 +182,20 @@ typedef struct s_tripe_data
 	t_render_data	*render_data;
 	t_texture_data	*tex_data;
 }	t_stripe_data;
+
+typedef struct s_minimap
+{
+	int	map_width;
+	int	map_height;
+	int	width;
+	int	height;
+	int	tile_size;
+	double	tiles_x;
+	double	tiles_y;
+	double	offset_x;
+	double	offset_y;
+	mlx_image_t	*img;
+}	t_minimap;
 
 // PARSING
 t_data		*parse_args(int ac, char **av);
@@ -213,6 +231,7 @@ void		my_mlx_pixel_put(mlx_image_t *img, int x, int y, int color);
 void		my_mlx_pixel_put_texture(mlx_image_t *img,
 				int x, int y, uint32_t color);
 void		draw_line(mlx_image_t *img, t_coord coord, uint32_t color);
+void		draw_square(mlx_image_t *img, t_coord coord, uint32_t color);
 void		draw_line_loop_helper(t_line_vars *l_vars, t_coord *coord);
 void		vertical_line(mlx_image_t *img, int x,
 				t_vertical vert, uint32_t color);
@@ -227,7 +246,7 @@ void		set_line_vars(t_line_vars *l_vars, t_coord coord);
 void		draw_line_loop_helper(t_line_vars *l_vars, t_coord *coord);
 
 // GAME INITIATION
-void		init_game(t_game *game, t_data *data);
+void		init_game(t_game *game, t_data *data, t_minimap *minimap);
 void		init_render_data(t_game *game, t_render_data *render_data);
 void		set_starting_position(t_game *game, t_render_data *render_data);
 void		set_starting_direction(t_game *game, t_render_data *render_data);
@@ -267,6 +286,11 @@ size_t		ft_strlen2(const char *s);
 size_t		ft_strlcpy2(char *dst, const char *src, size_t size);
 void		*free_mem(char **remainder, char **buffer);
 char		*ft_strjoin_gnl(char *s1, char *s2);
+
+// MINIMAP
+void	init_minimap_data(t_game *game, t_minimap *minimap);
+void	draw_minimap(t_game *game, t_render_data *data, t_minimap *minimap);
+// void	minimap_loop(void *param);
 
 //!debug, to delete
 void		print_data(t_render_data *data);

@@ -6,7 +6,7 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 19:04:04 by amonfret          #+#    #+#             */
-/*   Updated: 2025/03/21 19:17:30 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/24 19:37:40 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ void	set_camera_plane(t_render_data *render_data)
 	fov_deg = 66;
 	fov_rad = fov_deg * M_PI / 180.0;
 	plane_length = tan(fov_rad / 2.0);
-	render_data->plane_x = render_data->dir_y * plane_length;
-	render_data->plane_y = -render_data->dir_x * plane_length;
+	render_data->plane_x = -render_data->dir_y * plane_length;
+	render_data->plane_y = render_data->dir_x * plane_length;
 }
 
 void	init_time(t_render_data *render_data)

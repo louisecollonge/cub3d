@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:15:01 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/20 14:04:49 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/24 21:25:14 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 - charger les textures
 */
 
-void	init_game(t_game *game, t_data *data)
+void	init_game(t_game *game, t_data *data, t_minimap *minimap)
 {
-	game->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", true);
+	game->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", false);
 	if (!game->mlx)
 	{
 		cleanup(data);
@@ -30,4 +30,5 @@ void	init_game(t_game *game, t_data *data)
 	game->img = NULL;
 	game->data = data;
 	game->textures = load_textures(game, data);
+	game->minimap = minimap;
 }
