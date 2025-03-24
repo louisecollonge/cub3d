@@ -6,7 +6,7 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:23:19 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/21 19:46:17 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/24 19:25:46 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,10 +167,13 @@ typedef struct s_render_data
 	double			tex_pos; //starting texture coordinate
 }	t_render_data;
 
+typedef struct s_minimap	t_minimap;
+
 typedef struct s_ray_data
 {
 	t_game			*game;
 	t_render_data	*render_data;
+	t_minimap		*minimap;
 }	t_ray_data;
 
 typedef struct s_tripe_data
@@ -178,6 +181,20 @@ typedef struct s_tripe_data
 	t_render_data	*render_data;
 	t_texture_data	*tex_data;
 }	t_stripe_data;
+
+typedef struct s_minimap
+{
+	int	map_width;
+	int	map_height;
+	int	width;
+	int	height;
+	int	tile_size;
+	int	tiles_x;
+	int	tiles_y;
+	double	offset_x;
+	double	offset_y;
+	mlx_image_t	*img;
+}	t_minimap;
 
 // PARSING
 t_data		*parse_args(int ac, char **av);
@@ -267,6 +284,11 @@ size_t		ft_strlen2(const char *s);
 size_t		ft_strlcpy2(char *dst, const char *src, size_t size);
 void		*free_mem(char **remainder, char **buffer);
 char		*ft_strjoin_gnl(char *s1, char *s2);
+
+// MINIMAP
+void	init_minimap_data(t_game *game, t_minimap *minimap);
+void	draw_minimap(mlx_image_t *img, t_game *game, t_render_data *data, t_minimap *minimap);
+// void	minimap_loop(void *param);
 
 //!debug, to delete
 void		print_data(t_render_data *data);

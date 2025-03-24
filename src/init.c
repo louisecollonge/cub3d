@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:15:01 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/20 14:04:49 by lcollong         ###   ########.fr       */
+/*   Updated: 2025/03/24 17:37:55 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 void	init_game(t_game *game, t_data *data)
 {
-	game->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", true);
+	game->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", false);
 	if (!game->mlx)
 	{
 		cleanup(data);
