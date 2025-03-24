@@ -6,7 +6,7 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:15:42 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/21 17:41:19 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/24 21:30:36 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	my_mlx_close(void *param)
 	delete_texture_tab(game->textures);
 	mlx_close_window(game->mlx);
 	mlx_delete_image(game->mlx, game->img);
+	mlx_delete_image(game->mlx, game->minimap->img);
 	mlx_terminate(game->mlx);
 	cleanup(game->data);
 	exit(0);

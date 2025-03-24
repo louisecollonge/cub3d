@@ -6,7 +6,7 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:23:01 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/24 19:28:05 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/24 21:24:14 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int ac, char **av)
 	t_minimap		minimap;
 
 	data = parse_args(ac, av);
-	init_game(&game, data); //contains texture loading
+	init_game(&game, data, &minimap); //contains texture loading
 	init_render_data(&game, &render_data);
 	init_minimap_data(&game, &minimap);
 	// if (render_loop(&game, &render_data) == EXIT_FAILURE)

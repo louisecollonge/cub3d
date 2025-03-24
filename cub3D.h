@@ -6,7 +6,7 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:23:19 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/24 20:58:55 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/24 21:28:53 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ typedef struct s_data
 	int		in_map;
 }	t_data;
 
+typedef struct s_minimap	t_minimap;
+
 typedef struct s_game
 {
 	mlx_t			*mlx; //pointeur instance MLX42
@@ -73,6 +75,7 @@ typedef struct s_game
 	TEX				**textures; // tableau de textures
 	char			**map; //carte du jeu en 2D
 	t_data			*data; //pointer to data for cleanup
+	t_minimap		*minimap;
 }	t_game;
 
 //struct for bresenhams algo
@@ -167,8 +170,6 @@ typedef struct s_render_data
 	double			tex_pos; //starting texture coordinate
 }	t_render_data;
 
-typedef struct s_minimap	t_minimap;
-
 typedef struct s_ray_data
 {
 	t_game			*game;
@@ -245,7 +246,7 @@ void		set_line_vars(t_line_vars *l_vars, t_coord coord);
 void		draw_line_loop_helper(t_line_vars *l_vars, t_coord *coord);
 
 // GAME INITIATION
-void		init_game(t_game *game, t_data *data);
+void		init_game(t_game *game, t_data *data, t_minimap *minimap);
 void		init_render_data(t_game *game, t_render_data *render_data);
 void		set_starting_position(t_game *game, t_render_data *render_data);
 void		set_starting_direction(t_game *game, t_render_data *render_data);
