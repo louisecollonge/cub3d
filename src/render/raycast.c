@@ -6,7 +6,7 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:08:37 by amonfret          #+#    #+#             */
-/*   Updated: 2025/03/21 19:28:55 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/24 16:50:46 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ static void	set_texture_index(t_render_data *data)
 		data->texture_index = 0;
 	else if (data->wall_dir == SOUTH)
 		data->texture_index = 1;
-	else if (data->wall_dir == EAST)
-		data->texture_index = 2;
 	else if (data->wall_dir == WEST)
+		data->texture_index = 2;
+	else if (data->wall_dir == EAST)
 		data->texture_index = 3;
 }
 
