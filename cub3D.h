@@ -6,7 +6,7 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:23:19 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/24 21:28:53 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/24 21:46:00 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,15 +185,15 @@ typedef struct s_tripe_data
 
 typedef struct s_minimap
 {
-	int	map_width;
-	int	map_height;
-	int	width;
-	int	height;
-	int	tile_size;
-	double	tiles_x;
-	double	tiles_y;
-	double	offset_x;
-	double	offset_y;
+	int			map_width;
+	int			map_height;
+	int			width;
+	int			height;
+	int			tile_size;
+	double		tiles_x;
+	double		tiles_y;
+	double		offset_x;
+	double		offset_y;
 	mlx_image_t	*img;
 }	t_minimap;
 
@@ -288,12 +288,10 @@ void		*free_mem(char **remainder, char **buffer);
 char		*ft_strjoin_gnl(char *s1, char *s2);
 
 // MINIMAP
-void	init_minimap_data(t_game *game, t_minimap *minimap);
-void	draw_minimap(t_game *game, t_render_data *data, t_minimap *minimap);
+void		init_minimap_data(t_game *game, t_minimap *minimap);
+void		draw_minimap(t_game *game, t_render_data *data, t_minimap *minimap);
 // void	minimap_loop(void *param);
 
-//!debug, to delete
-void		print_data(t_render_data *data);
 // void		print_tab(char **tab); //debug
 
 #endif
