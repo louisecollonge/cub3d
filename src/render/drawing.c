@@ -6,7 +6,7 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 22:04:34 by amonfret          #+#    #+#             */
-/*   Updated: 2025/03/21 19:07:34 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/24 21:15:13 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,24 @@ void	draw_line(mlx_image_t *img, t_coord coord, uint32_t color)
 		if (coord.x0 == coord.x1 && coord.y0 == coord.y1)
 			break ;
 		draw_line_loop_helper(&l_vars, &coord);
+	}
+}
+
+void	draw_square(mlx_image_t *img, t_coord coord, uint32_t color)
+{
+	int	x;
+	int	y;
+
+	y = coord.y0;
+	while (y < coord.y1)
+	{
+		x = coord.x0;
+		while (x < coord.x1)
+		{
+			my_mlx_pixel_put(img, x, y, color);
+			x++;
+		}
+		y++;
 	}
 }
 
