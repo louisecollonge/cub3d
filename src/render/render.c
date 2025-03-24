@@ -6,11 +6,23 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:15:22 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/24 19:57:21 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/24 21:38:45 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D.h"
+
+static void	clear_images(t_ray_data *data)
+{
+	clear_image(data->game->img);
+	clear_image(data->minimap->img);
+}
+
+static void	images_to_window(t_ray_data *data)
+{
+	mlx_image_to_window(data->game->mlx, data->game->img, 0, 0);
+	mlx_image_to_window(data->game->mlx, data->minimap->img, 0, 520);
+}
 
 void	render_loop(void *param)
 {
@@ -20,11 +32,11 @@ void	render_loop(void *param)
 	if (!data->game->img)
 	{
 		data->game->img = mlx_new_image(data->game->mlx, WIDTH, HEIGHT);
-		data->minimap->img = mlx_new_image(data->game->mlx, data->minimap->width, data->minimap->height);
+		data->minimap->img = mlx_new_image(data->game->mlx,
+				data->minimap->width, data->minimap->height);
 		if (!data->game->img || !data->minimap->img)
 			my_mlx_close(data->game->mlx);
-		mlx_image_to_window(data->game->mlx, data->game->img, 0, 0);
-		mlx_image_to_window(data->game->mlx, data->minimap->img, 0, 520);
+		images_to_window(data);
 	}
 	data->render_data->current_time = mlx_get_time();
 	data->render_data->frame_time
@@ -34,8 +46,7 @@ void	render_loop(void *param)
 	data->render_data->rot_speed = data->render_data->frame_time * 3.0;
 	update_keys(data->game, data->render_data,
 		data->render_data->move_speed, data->render_data->rot_speed);
-	clear_image(data->game->img);
-	clear_image(data->minimap->img);
+	clear_images(data);
 	draw_ceiling(data->game->img, data->game->data->ceiling_rgb);
 	draw_floor(data->game->img, data->game->data->floor_rgb);
 	raycast(data->game, data->render_data);
