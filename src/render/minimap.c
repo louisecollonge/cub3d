@@ -6,11 +6,21 @@
 /*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 18:20:52 by amonfret          #+#    #+#             */
-/*   Updated: 2025/03/24 21:14:37 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/25 17:53:34 by amonfret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D.h"
+
+int	get_line_width(char **map, int index)
+{
+	int	i;
+
+	i = 0;
+	while (map[index][i] != '\0')
+		i++;
+	return (i);
+}
 
 void	init_minimap_data(t_game *game, t_minimap *minimap)
 {
@@ -52,10 +62,13 @@ void	draw_walls(int x, int y, t_minimap *minimap, t_game *game )
 	if (map_x >= 0 && map_x < minimap->map_width
 		&& map_y >= 0 && map_y < minimap->map_height)
 	{
-		if (game->map[map_y][map_x] == '1')
-			my_mlx_pixel_put(minimap->img, x, y, 0xFFFFFF);
-		else
-			my_mlx_pixel_put(minimap->img, x, y, 0x000000);
+		if (map_x < get_line_width(game->map, map_y))
+		{
+			if (game->map[map_y][map_x] == '1')
+				my_mlx_pixel_put(minimap->img, x, y, 0xFFFFFF);
+			else
+				my_mlx_pixel_put(minimap->img, x, y, 0x000000);
+		}
 	}
 }
 
