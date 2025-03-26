@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 14:15:42 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/24 21:30:36 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/26 16:30:58 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	my_mlx_close(void *param)
 void	my_keyhook(mlx_key_data_t keydata, void *param)
 {
 	t_game	*game;
+
 	game = (t_game *)param;
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 		my_mlx_close(game);
