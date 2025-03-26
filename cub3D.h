@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:23:19 by lcollong          #+#    #+#             */
-/*   Updated: 2025/03/25 17:25:21 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/26 16:35:38 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@
 # define RED "\033[31m"
 # define RESET "\033[0m"
 
-# define BUFFER_SIZE 1 //gnl
-# define TEX mlx_texture_t //for lisibility
+# define BUFFER_SIZE 1
+# define TEX mlx_texture_t
 # define COLL_RAD 0.1
 
 typedef enum s_option
@@ -70,15 +70,14 @@ typedef struct s_minimap	t_minimap;
 
 typedef struct s_game
 {
-	mlx_t			*mlx; //pointeur instance MLX42
-	mlx_image_t		*img; //image affichee par render
-	TEX				**textures; // tableau de textures
-	char			**map; //carte du jeu en 2D
-	t_data			*data; //pointer to data for cleanup
+	mlx_t			*mlx;
+	mlx_image_t		*img;
+	TEX				**textures;
+	char			**map;
+	t_data			*data;
 	t_minimap		*minimap;
 }	t_game;
 
-//struct for bresenhams algo
 typedef struct s_line_vars
 {
 	int	dx;
@@ -91,7 +90,6 @@ typedef struct s_line_vars
 	int	y_start;
 }	t_line_vars;
 
-// used to pass coords in functions
 typedef struct s_coord
 {
 	int	x0;
@@ -100,7 +98,6 @@ typedef struct s_coord
 	int	y1;
 }	t_coord;
 
-//struct for vertical line drawing
 typedef struct s_vertical
 {
 	int	draw_start;
@@ -117,25 +114,25 @@ typedef enum e_wall_direction
 
 typedef struct s_texture_data
 {
-	double	wall_x; //where on x the wall was hit by the ray;
+	double	wall_x;
 	int		texture_index;
 	int		tex_width;
 	int		tex_height;
-	int		tex_x; // x coordinate on the texture;
+	int		tex_x;
 	int		tex_y;
-	double	step; // increment of TEX coord per screen pixel
-	double	tex_pos; //starting texture coordinate
+	double	step;
+	double	tex_pos;
 }	t_texture_data;
 
 typedef struct s_render_data
 {
-	double			pos_x; //x and y starting position
+	double			pos_x;
 	double			pos_y;
-	double			dir_x;// direction vector of player
+	double			dir_x;
 	double			dir_y;
-	double			plane_x; //perpendicular camera plane vector
+	double			plane_x;
 	double			plane_y;
-	double			camera_x; // x in camera space
+	double			camera_x;
 	double			ray_direction_x;
 	double			ray_direction_y;
 	double			ray_length;
@@ -160,14 +157,14 @@ typedef struct s_render_data
 	double			move_speed;
 	double			rot_speed;
 	t_direction		wall_dir;
-	double			wall_x; //where on x the wall was hit by the ray;
+	double			wall_x;
 	int				texture_index;
 	int				tex_width;
 	int				tex_height;
-	int				tex_x; // x coordinate on the texture;
+	int				tex_x;
 	int				tex_y;
-	double			step; // increment of tex coord per screen pixel
-	double			tex_pos; //starting texture coordinate
+	double			step;
+	double			tex_pos;
 }	t_render_data;
 
 typedef struct s_ray_data
@@ -290,8 +287,6 @@ char		*ft_strjoin_gnl(char *s1, char *s2);
 // MINIMAP
 void		init_minimap_data(t_game *game, t_minimap *minimap);
 void		draw_minimap(t_game *game, t_render_data *data, t_minimap *minimap);
-// void	minimap_loop(void *param);
-
-// void		print_tab(char **tab); //debug
+int			get_line_width(char **map, int index);
 
 #endif

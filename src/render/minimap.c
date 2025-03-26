@@ -3,24 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 18:20:52 by amonfret          #+#    #+#             */
-/*   Updated: 2025/03/25 17:53:34 by amonfret         ###   ########.fr       */
+/*   Updated: 2025/03/26 16:33:18 by lcollong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D.h"
-
-int	get_line_width(char **map, int index)
-{
-	int	i;
-
-	i = 0;
-	while (map[index][i] != '\0')
-		i++;
-	return (i);
-}
 
 void	init_minimap_data(t_game *game, t_minimap *minimap)
 {

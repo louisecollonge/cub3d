@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: amonfret <amonfret@student.42.fr>          +#+  +:+       +#+         #
+#    By: lcollong <lcollong@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/10 12:17:39 by lcollong          #+#    #+#              #
-#    Updated: 2025/03/24 18:59:48 by amonfret         ###   ########.fr        #
+#    Updated: 2025/03/26 16:33:44 by lcollong         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,7 @@ SRC = 	$(SRC_DIR)/main.c \
 		$(SRC_DIR)/$(RENDER_DIR)/raycast_utils.c \
 		$(SRC_DIR)/$(RENDER_DIR)/dda.c \
 		$(SRC_DIR)/$(RENDER_DIR)/minimap.c \
+		$(SRC_DIR)/$(RENDER_DIR)/minimap_utils.c \
 		$(SRC_DIR)/$(INPUT_DIR)/handle_input.c \
 		$(SRC_DIR)/$(INPUT_DIR)/movement_input.c \
 		$(SRC_DIR)/$(INPUT_DIR)/rotation_input.c \
